@@ -9,17 +9,19 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'savoie': '#E3001B', // Rouge Savoie
-                        'gold': '#FFD700',   // Jaune Olympique
+                        'savoie': '#E3001B',
+                        'gold': '#FFD700',
                         'dark-bg': '#121212',
                         'card-bg': '#1E1E1E',
+                        'item-bg': '#262626',
                     },
                     fontFamily: {
                         sans: ['Montserrat', 'sans-serif'],
@@ -29,7 +31,6 @@
         }
     </script>
     <style>
-        /* --- IMAGE DE FOND (PHOTO DE FAMILLE) --- */
         .header-bg {
             position: relative;
             background-color: #121212;
@@ -42,12 +43,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* REMPLACE CETTE URL PAR LE NOM DE TA PHOTO DE FAMILLE (ex: 'famille.jpg') */
             background-image: url('IMG_3811-2.jpg');
             background-size: cover;
             background-position: center;
             opacity: 0.7;
-            /* Assombrit légèrement la photo pour lire le texte */
         }
 
         .glass-card {
@@ -111,178 +110,244 @@
         </div>
     </header>
 
-    <section id="programme" class="px-4 py-12 max-w-3xl mx-auto space-y-8 bg-dark-bg">
+    <section id="agenda" class="max-w-3xl mx-auto px-4 py-8 space-y-6">
 
-        <div class="text-center mb-10">
-            <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Le Programme</h2>
-            <div class="h-1 w-20 bg-savoie mx-auto mt-2"></div>
+        <div class="bg-card-bg rounded-xl p-6 border-l-[6px] border-savoie shadow-lg">
+            <div class="flex justify-between items-start mb-1">
+                <h4 class="text-savoie font-bold text-xs uppercase tracking-widest mb-1">SAMEDI 25 JUILLET</h4>
+                <i class="fas fa-fire text-gold"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-white mb-1">L'Ouverture 🔥</h2>
+            <p class="text-gray-500 text-xs italic mb-6">St Réal • St Pierre</p>
+
+            <div class="space-y-4 text-sm">
+                <div class="flex">
+                    <span class="font-bold text-white w-16">09h00</span>
+                    <span class="text-gray-400">Formation Secourisme (St-Pierre)</span>
+                </div>
+                <div class="flex">
+                    <span class="font-bold text-white w-16">17h00</span>
+                    <span class="text-gray-400">Relais de la Flamme (Fréterive > St Réal)</span>
+                </div>
+                <div class="flex">
+                    <span class="font-bold text-white w-16">18h30</span>
+                    <span class="text-gray-400">Cérémonie Officielle & Discours</span>
+                </div>
+                <div class="h-px bg-gray-800 w-full my-3"></div>
+                <div class="flex items-start">
+                    <span class="font-bold text-gold w-16">20h00</span>
+                    <div>
+                        <span class="text-gold font-bold">• Soirée Retrouvailles</span>
+                        <p class="text-gray-500 text-xs mt-1">St Réal • Buffet Canadien (Chacun apporte un plat)</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="bg-card-bg rounded-xl p-6 border-l-4 border-savoie shadow-lg">
-            <div class="flex justify-between items-center mb-4">
-                <span class="text-savoie font-bold text-sm uppercase tracking-widest">Samedi 25 Juillet</span>
-                <i class="fas fa-fire text-gold text-xl"></i>
+        <div class="bg-card-bg rounded-xl p-6 border-l-[6px] border-gold shadow-lg">
+            <div class="flex justify-between items-start mb-1">
+                <h4 class="text-gold font-bold text-xs uppercase tracking-widest mb-1">DIMANCHE 26 JUILLET</h4>
+                <i class="fas fa-volleyball-ball text-white"></i>
             </div>
-            <h3 class="text-2xl font-bold text-white mb-2">L'Ouverture 🔥</h3>
-            <p class="text-sm text-gray-400 mb-4 italic">St Réal • St Pierre</p>
-            <ul class="space-y-4 text-sm text-gray-300">
-                <li class="flex gap-3"><span class="font-bold text-white w-12">09h00</span> <span>Formation Secourisme
-                        (St-Pierre)</span></li>
-                <li class="flex gap-3"><span class="font-bold text-white w-12">17h00</span> <span>Relais de la Flamme
-                        (Fréterive > St Réal)</span></li>
-                <li class="flex gap-3"><span class="font-bold text-white w-12">18h30</span> <span>Cérémonie Officielle &
-                        Discours</span></li>
-                <li class="pt-3 border-t border-gray-700 mt-2">
-                    <span class="text-gold font-bold">20h00 • Soirée Retrouvailles</span><br>
-                    <span class="text-xs text-gray-400">St Réal • Buffet Canadien (Chacun apporte un plat)</span>
-                </li>
-            </ul>
-        </div>
+            <h2 class="text-2xl font-bold text-white mb-1">Volley & Badminton 🏐</h2>
+            <p class="text-gray-500 text-xs italic mb-6">St Pierre</p>
 
-        <div class="bg-card-bg rounded-xl p-6 border-l-4 border-gold shadow-lg">
-            <div class="flex justify-between items-center mb-4">
-                <span class="text-gold font-bold text-sm uppercase tracking-widest">Dimanche 26 Juillet</span>
-                <i class="fas fa-volleyball-ball text-white text-xl"></i>
+            <div class="space-y-4 text-sm mb-6">
+                <div class="flex">
+                    <span class="font-bold text-white w-16">09h30</span>
+                    <span class="text-gray-400">Grand Tournoi Volley (Inclus Seniors)</span>
+                </div>
+                <div class="flex">
+                    <span class="font-bold text-white w-16">10h00</span>
+                    <span class="text-gray-400">Badminton (Simples/Doubles)</span>
+                </div>
+                <div class="flex">
+                    <span class="font-bold text-gold w-16">12h00</span>
+                    <span class="text-gold font-bold">Photo Officielle 📸</span>
+                </div>
+                <div class="flex">
+                    <span class="font-bold text-white w-16">20h00</span>
+                    <span class="text-gray-400">Répétition Orchestre + Gospel</span>
+                </div>
             </div>
-            <h3 class="text-2xl font-bold text-white mb-2">Volley & Badminton 🏐</h3>
-            <p class="text-sm text-gray-400 mb-4 italic">St Pierre</p>
-            <ul class="space-y-3 text-sm text-gray-300 mb-6">
-                <li class="flex gap-3"><span class="font-bold text-white w-12">09h30</span> <span>Grand Tournoi Volley
-                        (Inclus Seniors)</span></li>
-                <li class="flex gap-3"><span class="font-bold text-white w-12">10h00</span> <span>Badminton
-                        (Simples/Doubles)</span></li>
-                <li class="flex gap-3"><span class="font-bold text-gold w-12">12h00</span> <span
-                        class="text-gold font-bold">Photo Officielle 📸</span></li>
-                <li class="flex gap-3"><span class="font-bold text-white w-12">20h00</span> <span>Répétition Orchestre +
-                        Gospel</span></li>
-            </ul>
-            <a href="LIEN_GOOGLE_FORM"
-                class="block w-full bg-gold hover:bg-yellow-500 text-black font-bold text-center py-3 rounded text-sm transition transform active:scale-95">
+
+            <a href="LINK_GOOGLE_FORM" target="_blank"
+                class="block w-full bg-gold hover:bg-yellow-500 text-black font-bold text-center py-3 rounded-lg transition text-sm">
                 Inscription Badminton
             </a>
         </div>
 
-        <div class="bg-card-bg rounded-xl p-6 border-l-4 border-blue-500 shadow-lg">
-            <span class="text-blue-400 font-bold text-sm uppercase tracking-widest">Lundi 27 Juillet</span>
-            <h3 class="text-2xl font-bold text-white mt-1 mb-4">Ping-Pong & Arts 🎨</h3>
-            <div class="grid grid-cols-1 gap-3 text-sm text-gray-300">
-                <div class="flex items-center gap-3 bg-black/20 p-2 rounded"><i
-                        class="fas fa-table-tennis text-blue-400 w-6 text-center"></i> <span>Matin : Tournoi Ping-Pong
-                        (H/F/-12ans)</span></div>
-                <div class="flex items-center gap-3 bg-black/20 p-2 rounded"><i
-                        class="fas fa-circle text-gray-400 w-6 text-center"></i> <span>14h00 : Jeu de Galet</span></div>
-                <div class="flex items-center gap-3 bg-black/20 p-2 rounded"><i
-                        class="fas fa-paint-brush text-purple-400 w-6 text-center"></i> <span>15h00 : Expo "Mon cousin
-                        est un artiste"</span></div>
-                <div class="flex items-center gap-3 bg-black/20 p-2 rounded"><i
-                        class="fas fa-futbol text-green-400 w-6 text-center"></i> <span>18h00 : Foot au Stade</span>
+        <div class="bg-card-bg rounded-xl p-6 border-l-[6px] border-blue-500 shadow-lg">
+            <h4 class="text-blue-500 font-bold text-xs uppercase tracking-widest mb-1">LUNDI 27 JUILLET</h4>
+            <h2 class="text-2xl font-bold text-white mb-6">Ping-Pong & Arts 🎨</h2>
+
+            <div class="space-y-4 text-sm">
+                <div class="flex">
+                    <span class="font-bold text-white w-16">Matin</span>
+                    <span class="text-gray-400">Tournoi Ping-Pong (H/F/-12ans)</span>
+                </div>
+                <div class="flex">
+                    <span class="font-bold text-white w-16">14h00</span>
+                    <span class="text-gray-400">Jeu de Galet</span>
+                </div>
+                <div class="flex">
+                    <span class="font-bold text-white w-16">15h00</span>
+                    <span class="text-gray-400">Expo "Mon cousin est un artiste"</span>
+                </div>
+                <div class="flex">
+                    <span class="font-bold text-white w-16">18h00</span>
+                    <span class="text-gray-400">Foot au Stade</span>
                 </div>
             </div>
-            <p class="text-xs text-gray-500 mt-3 text-center">Midi : Pique-nique tiré du sac à St Jean</p>
+            <p class="text-gray-500 text-xs italic mt-4">Midi : Pique-nique tiré du sac à St Jean</p>
         </div>
 
-        <div class="bg-card-bg rounded-xl p-6 border-l-4 border-orange-500 shadow-lg">
-            <span class="text-orange-400 font-bold text-sm uppercase tracking-widest">Mardi 28 Juillet</span>
-            <h3 class="text-2xl font-bold text-white mt-1 mb-4">Traditions & Pétanque</h3>
-            <ul class="space-y-3 text-sm text-gray-300">
-                <li class="flex gap-3"><span class="font-bold text-white w-12">09h00</span> <span>Tournoi Pétanque (St
-                        Jean) - Apportez vos boules!</span></li>
-                <li class="flex gap-3"><span class="font-bold text-white w-12">15h00</span> <span>Répétition
-                        Chorales/Orchestre (Fréterive)</span></li>
-                <li class="flex gap-3"><span class="font-bold text-white w-12">18h30</span> <span>Danses Folkloriques
-                        (Cour St Jean)</span></li>
-            </ul>
-        </div>
+        <div class="bg-card-bg rounded-xl p-6 border-l-[6px] border-orange-500 shadow-lg">
+            <h4 class="text-orange-500 font-bold text-xs uppercase tracking-widest mb-1">MARDI 28 JUILLET</h4>
+            <h2 class="text-2xl font-bold text-white mb-6">Traditions & Pétanque</h2>
 
-        <div class="bg-card-bg rounded-xl p-6 border-l-4 border-savoie shadow-lg relative overflow-hidden">
-            <i class="fas fa-bicycle absolute top-4 right-4 text-6xl text-white opacity-5"></i>
-            <span class="text-savoie font-bold text-sm uppercase tracking-widest">Mercredi 29 Juillet</span>
-            <h3 class="text-2xl font-bold text-white mt-1 mb-2">Le Col du Frêne 🚴‍♂️</h3>
-            <p class="text-xs text-gray-500 mb-4 italic">VAE Bienvenus • Prudence à la descente !</p>
-
-            <div class="space-y-3 text-sm text-gray-300 mb-6">
-                <div class="flex justify-between border-b border-gray-700 pb-2"><span>Départ Non-Chrono</span>
-                    <strong>07h30</strong>
+            <div class="space-y-4 text-sm">
+                <div class="flex">
+                    <span class="font-bold text-white w-16">09h00</span>
+                    <span class="text-gray-400">Tournoi Pétanque (St Jean) - Apportez vos boules!</span>
                 </div>
-                <div class="flex justify-between border-b border-gray-700 pb-2"><span class="text-gold font-bold">Départ
-                        CHRONO</span> <strong class="text-gold">08h30</strong></div>
-                <div class="flex justify-between pt-1"><span>Photo Sommet</span> <strong>09h30</strong></div>
+                <div class="flex">
+                    <span class="font-bold text-white w-16">15h00</span>
+                    <span class="text-gray-400">Répétition Chorales/Orchestre (Fréterive)</span>
+                </div>
+                <div class="flex">
+                    <span class="font-bold text-white w-16">18h30</span>
+                    <span class="text-gray-400">Danses Folkloriques (Cour St Jean)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-card-bg rounded-xl p-6 border-l-[6px] border-savoie shadow-lg relative">
+            <i class="fas fa-bicycle text-gray-700 text-6xl absolute top-4 right-4 opacity-10"></i>
+
+            <h4 class="text-savoie font-bold text-xs uppercase tracking-widest mb-1">MERCREDI 29 JUILLET</h4>
+            <h2 class="text-2xl font-bold text-white mb-1">Le Col du Frêne 🚴‍♂️</h2>
+            <p class="text-gray-500 text-xs italic mb-6">VAE Bienvenus - Prudence à la descente !</p>
+
+            <div class="space-y-4 text-sm mb-6">
+                <div class="flex">
+                    <span class="font-bold text-white w-16">07h30</span>
+                    <span class="text-gray-400">Départ Non-Chrono</span>
+                </div>
+                <div class="flex">
+                    <span class="font-bold text-gold w-16">08h30</span>
+                    <span class="text-gold font-bold">Départ CHRONO</span>
+                </div>
+                <div class="flex">
+                    <span class="font-bold text-white w-16">09h30</span>
+                    <span class="text-gray-400">Photo Sommet</span>
+                </div>
+                <div class="h-px bg-gray-800 w-full my-3"></div>
+                <div class="flex">
+                    <span class="font-bold text-white w-16">15h00</span>
+                    <span class="text-gray-400">La Dictée de Pivot 🤓</span>
+                </div>
+                <div class="flex">
+                    <span class="font-bold text-white w-16">19h30</span>
+                    <span class="text-gray-400">Dîner Canadien + Soirée Spectacle</span>
+                </div>
             </div>
 
-            <div class="bg-black/30 p-3 rounded mb-4 text-xs text-gray-300">
-                <p><strong>15h00 :</strong> La Dictée de Pivot 🤓</p>
-                <p><strong>19h30 :</strong> Dîner Canadien + Soirée Spectacle (Théâtre/Impro)</p>
-            </div>
-
-            <a href="LIEN_GOOGLE_FORM"
-                class="block w-full bg-savoie hover:bg-red-700 text-white font-bold text-center py-3 rounded text-sm transition transform active:scale-95">
+            <a href="LINK_GOOGLE_FORM" target="_blank"
+                class="block w-full bg-savoie hover:bg-red-700 text-white font-bold text-center py-3 rounded-lg transition text-sm">
                 Inscription Montée
             </a>
         </div>
 
-        <div class="bg-card-bg rounded-xl p-6 border-l-4 border-purple-500 shadow-lg">
-            <span class="text-purple-400 font-bold text-sm uppercase tracking-widest">Jeudi 30 Juillet</span>
-            <h3 class="text-2xl font-bold text-white mt-1 mb-4">Triathlon & Musique 🎸</h3>
-            <ul class="space-y-3 text-sm text-gray-300">
-                <li class="flex gap-3"><span class="font-bold text-white w-12">10h00</span> <span>Triathlon Relais Mixte
-                        (Plan d'eau St Pierre)</span></li>
-                <li class="flex gap-3"><span class="font-bold text-white w-12">11h00</span> <span>Concours
-                        Natation</span></li>
-                <li class="pt-2 border-t border-gray-700 mt-2 text-purple-300">
-                    <strong>18h00 : Concert Orchestre Familial</strong><br>
-                    <span class="text-xs text-gray-500">Église de Fréterive • Suivi du repas chez Bernard &
-                        Simone</span>
-                </li>
-            </ul>
+        <div class="bg-card-bg rounded-xl p-6 border-l-[6px] border-purple-500 shadow-lg">
+            <h4 class="text-purple-500 font-bold text-xs uppercase tracking-widest mb-1">JEUDI 30 JUILLET</h4>
+            <h2 class="text-2xl font-bold text-white mb-6">Triathlon & Musique 🎸</h2>
+
+            <div class="space-y-4 text-sm">
+                <div class="flex">
+                    <span class="font-bold text-white w-16">10h00</span>
+                    <span class="text-gray-400">Triathlon Relais Mixte (Plan d'eau St Pierre)</span>
+                </div>
+                <div class="flex">
+                    <span class="font-bold text-white w-16">11h00</span>
+                    <span class="text-gray-400">Concours Natation</span>
+                </div>
+                <div class="h-px bg-gray-800 w-full my-3"></div>
+                <div class="flex items-start">
+                    <span class="font-bold text-purple-400 w-16">18h00</span>
+                    <div>
+                        <span class="text-purple-400 font-bold">Concert Orchestre Familial</span>
+                        <p class="text-gray-500 text-xs mt-1">Église de Fréterive • Suivi du repas chez Bernard & Simone
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="bg-card-bg rounded-xl p-6 border-l-4 border-green-500 shadow-lg">
-            <span class="text-green-400 font-bold text-sm uppercase tracking-widest">Vendredi 31 Juillet</span>
-            <h3 class="text-2xl font-bold text-white mt-1 mb-2">Journée Montagne 🏔️</h3>
-            <div class="text-sm text-gray-300 space-y-2">
+        <div class="bg-card-bg rounded-xl p-6 border-l-[6px] border-green-500 shadow-lg">
+            <h4 class="text-green-500 font-bold text-xs uppercase tracking-widest mb-1">VENDREDI 31 JUILLET</h4>
+            <h2 class="text-2xl font-bold text-white mb-4">Journée Montagne 🏔️</h2>
+            <div class="text-sm text-gray-400 space-y-2 mb-4 pl-4 border-l-2 border-gray-700">
                 <p>Option 1 : <strong>Beaufortain</strong> (Col de la Sauce)</p>
                 <p>Option 2 : <strong>Belledonne</strong> (Pointe de Rognier)</p>
-                <p class="text-xs text-gray-500 mt-2">18h00 : Rafraîchissement chez Monique et Eric</p>
             </div>
+            <p class="text-xs text-gray-500 mt-4 text-right">18h00 : Rafraîchissement chez Monique et Eric</p>
         </div>
 
-        <div
-            class="bg-gradient-to-br from-gold/10 to-transparent border border-gold rounded-xl p-8 text-center relative overflow-hidden">
+        <div class="bg-card-bg rounded-xl p-6 border border-gold shadow-lg text-center relative overflow-hidden">
             <div class="absolute inset-0 bg-gold opacity-5"></div>
             <span
-                class="text-gold font-bold text-sm uppercase tracking-widest border border-gold px-3 py-1 rounded-full">Samedi
-                1er Août</span>
-            <h3 class="text-4xl font-black text-white mt-4 mb-2 uppercase italic">La Finale</h3>
-            <p class="text-gray-400 text-sm mb-6">Trail • Médailles • Fête</p>
+                class="text-gold font-bold text-[10px] uppercase tracking-widest border border-gold px-2 py-1 rounded-full">SAMEDI
+                1ER AOÛT</span>
+            <h2 class="text-3xl font-black text-white mt-4 mb-2 uppercase italic">La Finale</h2>
+            <p class="text-gray-500 text-sm mb-6">Trail • Médailles • Fête</p>
 
-            <div class="grid grid-cols-2 gap-4 mb-6">
-                <div class="bg-black/30 p-2 rounded">
-                    <p class="font-bold text-white">Matin</p>
-                    <p class="text-xs text-gray-400">Trail 12km ou 6km</p>
+            <div class="grid grid-cols-2 gap-4 mb-6 text-left">
+                <div class="bg-black/40 p-3 rounded-lg">
+                    <p class="font-bold text-white text-xs mb-1">Matin</p>
+                    <p class="text-[10px] text-gray-400">Trail 12km ou 6km</p>
                 </div>
-                <div class="bg-black/30 p-2 rounded">
-                    <p class="font-bold text-white">15h00</p>
-                    <p class="text-xs text-gray-400">Relais Folklo</p>
+                <div class="bg-black/40 p-3 rounded-lg">
+                    <p class="font-bold text-white text-xs mb-1">15h00</p>
+                    <p class="text-[10px] text-gray-400">Relais Folklo</p>
                 </div>
             </div>
 
-            <p class="text-gold font-bold mb-6">17h30 : Remise des médailles (Sans discours !)</p>
-
-            <div class="bg-gold text-black p-4 rounded-lg font-bold text-lg shadow-lg animate-pulse">
+            <div class="bg-gold text-black p-3 rounded-lg font-bold text-sm shadow-lg">
                 20h00 : SOIRÉE "ALORS ON DANSE !"
             </div>
         </div>
 
-        <div class="text-center text-gray-500 text-xs mt-8">
-            <p class="font-bold mb-1">Pour ceux qui restent le Dimanche 2...</p>
-            <p>Galibier • Arclusaz • Escalade</p>
+
+        <div class="bg-card-bg rounded-xl p-6 border-l-[6px] border-bonus shadow-lg relative">
+            <div class="flex justify-between items-start mb-1">
+                <h4 class="text-bonus font-bold text-xs uppercase tracking-widest mb-1">DIMANCHE 2 AOÛT</h4>
+                <i class="fas fa-sun text-white"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-white mb-1">Pour ceux qui restent... 😎</h2>
+            <p class="text-gray-500 text-xs italic mb-6">Programme libre pour les courageux</p>
+
+            <div class="space-y-4 text-sm">
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-bicycle text-bonus w-5 text-center"></i>
+                    <span class="text-gray-300"><strong>Col du Galibier</strong> (Départ Valloire ou St Michel)</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-hiking text-bonus w-5 text-center"></i>
+                    <span class="text-gray-300"><strong>Randonnée Arclusaz</strong> (Départ Col du Frêne)</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-mountain text-bonus w-5 text-center"></i>
+                    <span class="text-gray-300">Session Escalade</span>
+                </div>
+                <div class="h-px bg-gray-800 w-full my-3"></div>
+                <p class="text-center text-gray-500 text-xs italic">Fin des Olympiades 2026 👋</p>
+            </div>
         </div>
 
-    </section>
 
-    <div class="text-center text-xs text-gray-600 pb-32 pt-10">
-        <p>© 2026 - Famille Delachenal</p>
-    </div>
+
+    </section>
 
     <div
         class="fixed bottom-6 left-4 right-4 h-16 bg-[#1a1a1a] rounded-full flex justify-around items-center px-2 z-50 shadow-2xl border border-gray-700">
@@ -290,34 +355,28 @@
             <i class="fas fa-home text-lg mb-0.5"></i>
             <span class="text-[9px] font-bold">Accueil</span>
         </a>
-        <a href="#programme" class="flex flex-col items-center text-gray-400 hover:text-white transition w-12">
+        <a href="#agenda" class="flex flex-col items-center text-gray-400 hover:text-white transition w-12">
             <i class="fas fa-list text-lg mb-0.5"></i>
             <span class="text-[9px]">Agenda</span>
         </a>
 
-        <a href="#"
-            class="w-14 h-14 bg-savoie rounded-full -mt-10 border-[5px] border-[#121212] flex items-center justify-center text-white shadow-lg hover:scale-110 transition transform">
-            <i class="fas fa-camera text-xl"></i>
-        </a>
-
-        <a href="#" class="flex flex-col items-center text-gray-400 hover:text-white transition w-12">
+        <a href="lieux.html"
+            class="flex flex-col items-center text-gray-400 hover:text-white transition w-12 hover:scale-110">
             <i class="fas fa-map-marker-alt text-lg mb-0.5"></i>
             <span class="text-[9px]">Lieux</span>
         </a>
-        <a href="#" class="flex flex-col items-center text-gold w-12 hover:text-white">
+        <a href="podium.html"
+            class="flex flex-col items-center text-gold w-12 hover:text-white hover:scale-110 transition">
             <i class="fas fa-trophy text-lg mb-0.5"></i>
             <span class="text-[9px]">Podium</span>
         </a>
     </div>
 
     <script>
-        // SCRIPT DU COMPTE A REBOURS
         const targetDate = new Date("July 25, 2026 09:00:00").getTime();
-
         const timer = setInterval(function () {
             const now = new Date().getTime();
             const distance = targetDate - now;
-
             if (distance > 0) {
                 document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
                 document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
