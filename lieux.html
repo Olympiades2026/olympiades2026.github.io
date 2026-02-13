@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Lieux - Olympiades 2026</title>
     <link rel="icon" type="image/png" href="logo.png">
 
@@ -22,55 +22,122 @@
     </script>
 
     <style>
-        /* Fond dégradé subtil + Particules */
         body { 
-            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
+            background: radial-gradient(circle at top, #1a1a1a 0%, #050505 100%);
             color: #e2e8f0; 
             font-family: 'Montserrat', sans-serif; 
-            overflow: hidden; 
         }
+        
         #particles-js { position: fixed; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.2; }
 
-        /* Header style "Verre" avec lueur rouge subtile */
-        .glass-header { 
-            background: rgba(20, 20, 20, 0.8); 
+        .glass { 
+            background: rgba(255, 255, 255, 0.03); 
             backdrop-filter: blur(10px); 
-            border-bottom: 1px solid rgba(227, 0, 27, 0.3);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08); 
         }
-        .text-glow { text-shadow: 0 0 15px rgba(227, 0, 27, 0.6); }
 
-        /* Conteneur de la carte flottant */
-        .map-container { 
-            height: calc(100vh - 180px); 
-            position: relative; 
-            margin: 20px; 
+        /* Conteneur de la carte avec lueur */
+        .map-frame { 
             border-radius: 2rem; 
             overflow: hidden; 
-            border: 1px solid rgba(255,255,255,0.1); 
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(227, 0, 27, 0.2); 
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(227, 0, 27, 0.1);
         }
+
+        .location-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .location-card:hover {
+            background: rgba(227, 0, 27, 0.1);
+            border-color: rgba(227, 0, 27, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .text-glow { text-shadow: 0 0 15px rgba(227, 0, 27, 0.6); }
     </style>
 </head>
-<body>
+<body class="pb-32 selection:bg-savoie selection:text-white">
     <div id="particles-js"></div>
 
-    <header class="glass-header py-6 px-4 text-center relative z-20">
-        <h1 class="text-3xl font-black uppercase tracking-tighter text-white text-glow">Carte & Lieux 📍</h1>
-        <p class="text-[10px] uppercase tracking-[0.3em] text-savoie font-bold mt-2 opacity-80">Retrouvez votre chemin en Savoie</p>
+    <header class="py-10 px-4 text-center relative z-20">
+        <h1 class="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white text-glow">Carte & Lieux 📍</h1>
+        <p class="text-[10px] uppercase tracking-[0.4em] text-savoie font-bold mt-2">Le terrain de jeu savoyard</p>
     </header>
 
-    <main class="map-container relative z-10">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d44682.84413176593!2d6.117878916117461!3d45.576918395243446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478bb742ce31a4bd%3A0x408ab2ae4baaa20!2s73250%20Saint-Pierre-d'Albigny!5e0!3m2!1sfr!2sfr!4v1768249778550!5m2!1sfr!2sfr" 
-            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <main class="max-w-4xl mx-auto px-4 relative z-10 space-y-8">
+        
+        <div class="map-frame h-[400px] md:h-[500px] relative">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d44613.38541289139!2d6.126084!3d45.543419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478ba39158586311%3A0x408ab2ae4bb2400!2s73250%20Saint-Pierre-d&#39;Albigny!5e0!3m2!1sfr!2sfr!4v1715600000000!5m2!1sfr!2sfr" 
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            
+            <div class="glass p-5 rounded-2xl location-card flex items-center justify-between group">
+                <div>
+                    <h3 class="font-black text-white uppercase tracking-tight">St Pierre d'Albigny</h3>
+                    <p class="text-[10px] text-gray-500 uppercase font-bold">Volley • Triathlon • Plan d'eau</p>
+                </div>
+                <a href="https://maps.app.goo.gl/yQ3q4Tid2G8Y5mUo6" target="_blank" class="w-10 h-10 bg-savoie rounded-full flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition">
+                    <i class="fas fa-directions"></i>
+                </a>
+            </div>
+
+            <div class="glass p-5 rounded-2xl location-card flex items-center justify-between group">
+                <div>
+                    <h3 class="font-black text-white uppercase tracking-tight">St Réal</h3>
+                    <p class="text-[10px] text-gray-500 uppercase font-bold">Cérémonies • Soirées • Retrouvailles</p>
+                </div>
+                <a href="https://maps.app.goo.gl/U68M1Rz4T2L7u4uA6" target="_blank" class="w-10 h-10 bg-savoie rounded-full flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition">
+                    <i class="fas fa-directions"></i>
+                </a>
+            </div>
+
+            <div class="glass p-5 rounded-2xl location-card flex items-center justify-between group">
+                <div>
+                    <h3 class="font-black text-white uppercase tracking-tight">St Jean de la Porte</h3>
+                    <p class="text-[10px] text-gray-400 uppercase font-bold text-blue-400">Ping-Pong • Pétanque • Trail</p>
+                </div>
+                <a href="https://maps.app.goo.gl/9Z4kG7X8W9Y7Z6G5" target="_blank" class="w-10 h-10 bg-savoie rounded-full flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition">
+                    <i class="fas fa-directions"></i>
+                </a>
+            </div>
+
+            <div class="glass p-5 rounded-2xl location-card flex items-center justify-between group">
+                <div>
+                    <h3 class="font-black text-white uppercase tracking-tight">Col du Frêne</h3>
+                    <p class="text-[10px] text-gray-500 uppercase font-bold">Cyclisme • Randonnée Arclusaz</p>
+                </div>
+                <a href="https://maps.app.goo.gl/m3U7X8W9Y7Z6G5G4" target="_blank" class="w-10 h-10 bg-savoie rounded-full flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition">
+                    <i class="fas fa-directions"></i>
+                </a>
+            </div>
+
+        </div>
+
+        <p class="text-center text-gray-500 text-[9px] uppercase tracking-[0.2em] font-bold py-6 opacity-40">Toutes les distances sont calculées depuis le centre-ville</p>
     </main>
 
-    <nav class="fixed bottom-6 left-4 right-4 h-16 bg-[#1a1a1a]/90 backdrop-blur-md rounded-full flex justify-around items-center px-2 z-50 shadow-2xl border border-gray-700 max-w-lg mx-auto">
-        <a href="index.html" class="flex flex-col items-center text-gray-400 hover:text-white transition w-12 hover:scale-110"><i class="fas fa-home text-lg mb-0.5"></i><span class="text-[9px] font-bold uppercase">Accueil</span></a>
-        <a href="souvenirs.html" class="flex flex-col items-center text-gray-400 hover:text-white transition w-12 hover:scale-110"><i class="fas fa-film text-lg mb-0.5"></i><span class="text-[9px] font-bold uppercase">Souvenirs</span></a>
-        <a href="lieux.html" class="flex flex-col items-center text-savoie w-12 scale-110"><i class="fas fa-map-marker-alt text-lg mb-0.5"></i><span class="text-[9px] font-bold uppercase">Lieux</span></a>
-        <a href="podium.html" class="flex flex-col items-center text-gray-400 hover:text-white transition w-12 hover:scale-110"><i class="fas fa-trophy text-lg mb-0.5"></i><span class="text-[9px] font-bold uppercase">Podium</span></a>
-    </nav>
+    <div class="fixed bottom-6 left-4 right-4 h-16 bg-[#1a1a1a]/95 backdrop-blur-md rounded-full flex justify-around items-center px-2 z-50 shadow-2xl border border-gray-700 max-w-lg mx-auto">
+        <a href="index.html" class="flex flex-col items-center text-gray-400 hover:text-white transition w-12 hover:scale-110">
+            <i class="fas fa-home text-lg mb-0.5"></i>
+            <span class="text-[9px] font-bold uppercase">Accueil</span>
+        </a>
+        <a href="souvenirs.html" class="flex flex-col items-center text-gray-400 hover:text-white transition w-12 hover:scale-110">
+            <i class="fas fa-film text-lg mb-0.5"></i>
+            <span class="text-[9px] font-bold uppercase">Souvenirs</span>
+        </a>
+        <a href="lieux.html" class="flex flex-col items-center text-savoie w-12 hover:scale-110 transition">
+            <i class="fas fa-map-marker-alt text-lg mb-0.5"></i>
+            <span class="text-[9px] font-bold uppercase">Lieux</span>
+        </a>
+        <a href="podium.html" class="flex flex-col items-center text-gray-400 hover:text-white transition w-12 hover:scale-110">
+            <i class="fas fa-trophy text-lg mb-0.5"></i>
+            <span class="text-[9px] font-bold uppercase">Podium</span>
+        </a>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
