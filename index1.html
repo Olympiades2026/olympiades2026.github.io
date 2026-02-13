@@ -3,247 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Olympiades Familiales 2026 | SAVOIE</title>
+    <title>OLYMPIADES 2026 | SAVOIE</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { 'savoie': '#E3001B', 'gold': '#FFD700', 'dark-bg': '#0a0a0a', 'bonus': '#00d4ff' },
-                    fontFamily: { sans: ['Montserrat', 'sans-serif'], sport: ['Bebas Neue', 'cursive'] }
+                    colors: { 'savoie': '#E3001B', 'gold': '#FFD700', 'dark-bg': '#050505', 'bonus': '#00d4ff' },
+                    fontFamily: { sans: ['Montserrat', 'sans-serif'], sport: ['Bebas Neue', 'cursive'] },
+                    animation: { 'spin-slow': 'spin 8s linear infinite', 'pulse-glow': 'glow 2s ease-in-out infinite' }
                 }
             }
         }
     </script>
+
     <style>
-        .hero-bg { background: linear-gradient(rgba(10,10,10,0.6), #0a0a0a), url('IMG_3811-2.jpg') center/cover fixed; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
-        .card-hover { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .card-hover:hover { transform: translateY(-5px); border-color: rgba(227, 0, 27, 0.4); background: rgba(255,255,255,0.05); }
-        #particles-js { position: fixed; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-        .nav-active { color: #E3001B; }
+        body { background-color: #050505; color: white; cursor: default; }
+        .hero-bg { background: linear-gradient(to bottom, rgba(5,5,5,0.2), #050505), url('IMG_3811-2.jpg') center/cover fixed; }
+        
+        /* Glassmorphism */
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        
+        /* Scroll Progress */
+        #progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(to right, #E3001B, #FFD700); z-index: 100; width: 0%; transition: width 0.2s; }
+
+        /* Tilt Effect Styles */
+        .tilt-card { transform-style: preserve-3d; transition: transform 0.1s; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #E3001B; border-radius: 10px; }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(227, 0, 27, 0.2); }
+            50% { box-shadow: 0 0 25px rgba(227, 0, 27, 0.5); }
+        }
+        
+        #particles-js { position: fixed; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.4; }
     </style>
 </head>
-<body class="bg-dark-bg text-gray-100 font-sans selection:bg-savoie">
+
+<body class="font-sans">
+    <div id="progress-bar"></div>
     <div id="particles-js"></div>
 
-    <header class="hero-bg min-h-screen flex flex-col justify-center items-center text-center px-4 relative">
-        <div class="z-10" data-aos="zoom-out" data-aos-duration="1500">
-            <div class="w-36 h-36 bg-white rounded-full flex items-center justify-center mb-8 border-4 border-savoie shadow-[0_0_30px_rgba(227,0,27,0.3)] mx-auto overflow-hidden p-2">
+    <header class="hero-bg min-h-screen flex flex-col justify-center items-center text-center px-4 relative overflow-hidden">
+        <div class="z-10 relative">
+            <div id="hero-logo" class="w-40 h-40 bg-white rounded-full flex items-center justify-center mb-10 border-4 border-savoie shadow-2xl mx-auto p-2">
                 <img src="logo.png" alt="Logo" class="w-full h-full object-contain">
             </div>
-            <span class="px-6 py-1 bg-savoie text-white text-xs font-black tracking-[0.4em] uppercase rounded-full mb-6 inline-block shadow-lg">Savoie • 2026</span>
-            <h1 class="font-sport text-7xl md:text-9xl leading-[0.8] tracking-tighter uppercase text-white drop-shadow-2xl">OLYMPIADES<br><span class="text-gold italic">FAMILIALES</span></h1>
-            <p class="text-lg md:text-2xl mt-8 font-light tracking-[0.2em] text-gray-300">DU 25 JUILLET AU 1ER AOÛT 2026</p>
-            <p class="text-sm italic opacity-60 mt-2">Famille Delachenal & Co</p>
+            
+            <h1 id="hero-title" class="font-sport text-8xl md:text-[12rem] leading-[0.8] tracking-tighter uppercase text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+                Olympiades<br><span class="text-gold italic drop-shadow-none">Familiales</span>
+            </h1>
+            
+            <div class="mt-10 overflow-hidden">
+                <p id="hero-subtitle" class="text-xl md:text-3xl font-light tracking-[0.4em] text-gray-300 uppercase">Savoie • 2026</p>
+            </div>
         </div>
-        
-        <div class="grid grid-cols-4 gap-3 mt-16 w-full max-w-xl z-10" data-aos="fade-up" data-aos-delay="600">
-            <div class="glass p-4 rounded-2xl border-b-4 border-savoie"><span id="days" class="block text-4xl font-black">00</span><span class="text-[10px] uppercase font-bold opacity-50 tracking-widest">Jours</span></div>
-            <div class="glass p-4 rounded-2xl border-b-4 border-savoie"><span id="hours" class="block text-4xl font-black">00</span><span class="text-[10px] uppercase font-bold opacity-50 tracking-widest">Hrs</span></div>
-            <div class="glass p-4 rounded-2xl border-b-4 border-savoie"><span id="minutes" class="block text-4xl font-black">00</span><span class="text-[10px] uppercase font-bold opacity-50 tracking-widest">Min</span></div>
-            <div class="glass p-4 rounded-2xl border-b-4 border-savoie"><span id="seconds" class="block text-4xl font-black text-savoie">00</span><span class="text-[10px] uppercase font-bold opacity-50 tracking-widest">Sec</span></div>
+
+        <div class="grid grid-cols-4 gap-4 mt-20 w-full max-w-2xl z-10 px-4" data-aos="fade-up" data-aos-delay="800">
+            <div class="glass p-6 rounded-3xl border-b-4 border-savoie group transition hover:bg-savoie/10">
+                <span id="days" class="block text-4xl md:text-6xl font-black">00</span>
+                <span class="text-[10px] uppercase font-bold text-gray-500 tracking-widest">Jours</span>
+            </div>
+            <div class="glass p-6 rounded-3xl border-b-4 border-savoie">
+                <span id="hours" class="block text-4xl md:text-6xl font-black">00</span>
+                <span class="text-[10px] uppercase font-bold text-gray-500 tracking-widest">Heures</span>
+            </div>
+            <div class="glass p-6 rounded-3xl border-b-4 border-savoie">
+                <span id="minutes" class="block text-4xl md:text-6xl font-black">00</span>
+                <span class="text-[10px] uppercase font-bold text-gray-500 tracking-widest">Mins</span>
+            </div>
+            <div class="glass p-6 rounded-3xl border-b-4 border-savoie">
+                <span id="seconds" class="block text-4xl md:text-6xl font-black text-savoie animate-pulse">00</span>
+                <span class="text-[10px] uppercase font-bold text-gray-500 tracking-widest">Secs</span>
+            </div>
         </div>
     </header>
 
-    <div class="bg-savoie sticky top-0 z-50 py-3 shadow-2xl border-y border-white/10">
-        <div class="flex items-center justify-center text-xs md:text-sm font-black uppercase tracking-widest gap-4 animate-pulse">
-            <i class="fas fa-utensils text-gold"></i>
-            <span>Buffet Canadien : Apportez repas, boissons & couverts !</span>
+    <div class="bg-savoie z-50 py-4 shadow-2xl border-y border-white/10 overflow-hidden relative">
+        <div class="whitespace-nowrap flex gap-20 animate-marquee font-black uppercase tracking-widest text-sm">
+            <span><i class="fas fa-utensils text-gold mr-3"></i> Buffet Canadien : Chacun apporte un plat, ses boissons et ses couverts !</span>
+            <span><i class="fas fa-medal text-gold mr-3"></i> Olympiades Familiales Delachenal & Co - Édition 2026</span>
+            <span><i class="fas fa-fire text-gold mr-3"></i> 25 Juillet au 1er Août en Savoie</span>
         </div>
     </div>
 
-    <section id="agenda" class="max-w-3xl mx-auto px-4 py-20 relative z-10 space-y-12">
+    <style>
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .animate-marquee { display: inline-block; animation: marquee 30s linear infinite; }
+    </style>
 
-        <div class="glass p-8 rounded-[2rem] border-l-8 border-savoie card-hover" data-aos="fade-right">
-            <div class="flex justify-between items-start mb-6">
+    <section id="agenda" class="max-w-4xl mx-auto px-4 py-24 relative z-10 space-y-16">
+
+        <div class="glass p-10 rounded-[3rem] border-l-[12px] border-savoie tilt-card" data-aos="fade-right">
+            <div class="flex justify-between items-start mb-8">
                 <div>
-                    <h4 class="text-savoie font-black text-xs tracking-widest uppercase italic mb-1">Samedi 25 Juillet</h4>
-                    <h2 class="text-4xl font-black uppercase tracking-tighter">L'Ouverture 🔥</h2>
-                    <p class="text-gray-500 text-xs font-bold mt-1 uppercase tracking-widest">St Réal • St Pierre</p>
+                    <span class="text-savoie font-black text-xs tracking-[0.3em] uppercase italic">Jour d'Ouverture</span>
+                    <h2 class="text-5xl font-black uppercase tracking-tighter mt-2">L'Allumage 🔥</h2>
+                    <p class="text-gray-500 font-bold text-sm uppercase mt-1">St Réal • St Pierre</p>
                 </div>
-                <i class="fas fa-fire text-gold text-3xl"></i>
+                <div class="bg-savoie/20 p-5 rounded-full"><i class="fas fa-fire text-savoie text-3xl animate-bounce"></i></div>
             </div>
-            <div class="space-y-4">
-                <div class="flex gap-6 items-center"> <span class="text-white font-black text-lg w-16">09h00</span> <span class="text-gray-400">Formation Secourisme (St-Pierre)</span> </div>
-                <div class="flex gap-6 items-center"> <span class="text-white font-black text-lg w-16">17h00</span> <span class="text-gray-400">Départ de la Flamme (Fréterive > St Réal)</span> </div>
-                <div class="flex gap-6 items-center"> <span class="text-white font-black text-lg w-16">18h30</span> <span class="text-gray-400">Cérémonie Officielle & Discours</span> </div>
-                <div class="mt-6 p-5 bg-white/5 rounded-2xl border border-white/10">
-                    <p class="text-gold font-black text-xl uppercase tracking-tighter">20h00 • Soirée Retrouvailles</p>
-                    <p class="text-white font-bold italic text-sm">"Alors on danse"</p>
-                    <p class="text-gray-500 text-xs mt-2 uppercase">St Réal • Buffet Canadien</p>
+            <div class="space-y-6">
+                <div class="flex items-center gap-6 group">
+                    <div class="w-20 text-2xl font-black text-white group-hover:text-savoie transition">09h00</div>
+                    <div class="h-px flex-1 bg-white/10"></div>
+                    <div class="text-gray-400 font-medium">Formation Secourisme (St-Pierre)</div>
+                </div>
+                <div class="flex items-center gap-6 group">
+                    <div class="w-20 text-2xl font-black text-white group-hover:text-savoie transition">17h00</div>
+                    <div class="h-px flex-1 bg-white/10"></div>
+                    <div class="text-gray-400 font-medium">Départ de la Flamme (Fréterive > St Réal)</div>
+                </div>
+                <div class="p-6 bg-savoie/5 rounded-3xl border border-savoie/20 mt-8 relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-savoie opacity-0 group-hover:opacity-5 transition duration-500"></div>
+                    <p class="text-gold font-black text-2xl uppercase tracking-tighter">20h00 • Soirée "Alors on danse"</p>
+                    <p class="text-gray-400 text-sm mt-2 italic">St Réal • Buffet Canadien (Chacun apporte plat & couverts)</p>
                 </div>
             </div>
         </div>
 
-        <div class="glass p-8 rounded-[2rem] border-l-8 border-gold card-hover" data-aos="fade-left">
-            <div class="flex justify-between items-start mb-6">
+        <div class="glass p-10 rounded-[3rem] border-l-[12px] border-gold tilt-card" data-aos="fade-left">
+            <div class="flex justify-between items-start mb-8 text-right">
+                <i class="fas fa-volleyball-ball text-white text-4xl animate-spin-slow"></i>
                 <div>
-                    <h4 class="text-gold font-black text-xs tracking-widest uppercase italic mb-1">Dimanche 26 Juillet</h4>
-                    <h2 class="text-4xl font-black uppercase tracking-tighter">Sports de Filet 🏐</h2>
-                    <p class="text-gray-500 text-xs font-bold mt-1 uppercase tracking-widest">St Pierre</p>
+                    <span class="text-gold font-black text-xs tracking-[0.3em] uppercase italic text-right block">Action & Sports</span>
+                    <h2 class="text-5xl font-black uppercase tracking-tighter mt-2">Volley & Bad 🏐</h2>
                 </div>
-                <i class="fas fa-volleyball-ball text-white text-3xl"></i>
             </div>
-            <div class="space-y-4 mb-8">
-                <div class="flex gap-6 items-center"> <span class="text-white font-black text-lg w-16">09h30</span> <span class="text-gray-400">Grand Tournoi Volley (Inclus Seniors)</span> </div>
-                <div class="flex gap-6 items-center"> <span class="text-white font-black text-lg w-16">10h00</span> <span class="text-gray-400">Badminton (Simples/Doubles)</span> </div>
-                <div class="flex gap-6 items-center"> <span class="text-white font-black text-lg w-16">11h00</span> <span class="text-gray-400">Jeu de Ballon Prisonnier (Tous)</span> </div>
-                <div class="flex gap-6 items-center text-gold"> <span class="font-black text-lg w-16">12h00</span> <span class="font-bold">Photo Officielle 📸 + Pique-nique</span> </div>
-                <div class="flex gap-6 items-center"> <span class="text-white font-black text-lg w-16">18h00</span> <span class="text-gray-400">Finale Tournoi Volley</span> </div>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfOTshNXJ28PSvhSWZ68A3fPT-Lca4frAdjN2f5OqYUZDSAdA/viewform?usp=publish-editor" target="_blank" class="bg-gold text-black font-black py-4 rounded-xl text-center uppercase text-xs tracking-widest hover:scale-105 transition">Inscription Volley</a>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSepBB_6wgbXCf_ClzWEzvE1OX2VtWNmVnG9alDxgkgeS6U5JQ/viewform?usp=header" target="_blank" class="border-2 border-gold text-gold font-black py-4 rounded-xl text-center uppercase text-xs tracking-widest hover:bg-gold hover:text-black transition">Inscription Badminton</a>
-            </div>
-        </div>
-
-        <div class="glass p-8 rounded-[2rem] border-l-8 border-blue-500 card-hover" data-aos="fade-right">
-            <h4 class="text-blue-500 font-black text-xs tracking-widest uppercase italic mb-1">Lundi 27 Juillet</h4>
-            <h2 class="text-4xl font-black uppercase tracking-tighter mb-6">Ping-Pong & Arts 🎨</h2>
-            <div class="space-y-4 mb-8">
-                <div class="flex gap-6 items-center"> <span class="text-white font-black text-lg w-16">09h00</span> <span class="text-gray-400">Journée Ping-Pong & Tournoi Enfants -12ans</span> </div>
-                <div class="flex gap-6 items-center text-blue-400"> <span class="font-black text-lg w-16">12h00</span> <span class="font-bold">Pique-nique (St Jean)</span> </div>
-                <div class="flex gap-6 items-center"> <span class="text-white font-black text-lg w-16">14h00</span> <span class="text-gray-400">Début Jeu de Galet</span> </div>
-                <div class="flex gap-6 items-center"> <span class="text-white font-black text-lg w-16">15h00</span> <span class="text-gray-400 italic">Expo "Mon cousin est un artiste"</span> </div>
-                <div class="flex gap-6 items-center"> <span class="text-white font-black text-lg w-16">18h00</span> <span class="text-gray-400">Tournoi Foot (Stade)</span> </div>
-            </div>
-            <div class="grid grid-cols-1 gap-3">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfr7BPb5JJucwC8Nqg-iliqgZ0kZ21PfuG2iPRK55yytc4NgA/viewform?usp=publish-editor" target="_blank" class="bg-blue-600 text-white font-black py-4 rounded-xl text-center uppercase text-xs tracking-widest hover:bg-blue-500 transition">Inscription Ping-Pong</a>
-                <div class="grid grid-cols-2 gap-3">
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdJmXTz4dQog1o8H5w_4FwKbudoVGqOHCfV-Iu-1iMjicE0uQ/viewform?usp=publish-editor" target="_blank" class="border border-blue-500 text-blue-500 font-bold py-3 rounded-xl text-center uppercase text-[10px] tracking-widest hover:bg-blue-500 hover:text-white transition">Jeu de Galet</a>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdo5emEWseSx3Y7MPg24sXPC0hZUTMYEFzSk8K9jpflGwj9kg/viewform?usp=publish-editor" target="_blank" class="border border-blue-500 text-blue-500 font-bold py-3 rounded-xl text-center uppercase text-[10px] tracking-widest hover:bg-blue-500 hover:text-white transition">Foot</a>
+            <div class="grid md:grid-cols-2 gap-8 mb-10">
+                <div class="space-y-4">
+                    <div class="flex justify-between border-b border-white/5 pb-2"><span>09h30</span><span class="text-gray-400">Grand Tournoi Volley</span></div>
+                    <div class="flex justify-between border-b border-white/5 pb-2"><span>10h00</span><span class="text-gray-400">Badminton Simples</span></div>
+                    <div class="flex justify-between text-gold font-bold"><span>12h00</span><span>Photo Officielle 📸</span></div>
+                </div>
+                <div class="space-y-4">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfOTshNXJ28PSvhSWZ68A3fPT-Lca4frAdjN2f5OqYUZDSAdA/viewform" target="_blank" class="block w-full bg-gold text-black font-black py-4 rounded-2xl text-center uppercase text-xs tracking-widest hover:scale-105 transition">Inscription Volley</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSepBB_6wgbXCf_ClzWEzvE1OX2VtWNmVnG9alDxgkgeS6U5JQ/viewform" target="_blank" class="block w-full border-2 border-gold text-gold font-black py-4 rounded-2xl text-center uppercase text-xs tracking-widest hover:bg-gold hover:text-black transition">Inscription Badminton</a>
                 </div>
             </div>
         </div>
 
-        <div class="glass p-8 rounded-[2rem] border-l-8 border-orange-500 card-hover" data-aos="fade-left">
-            <h4 class="text-orange-500 font-black text-xs tracking-widest uppercase italic mb-1">Mardi 28 Juillet</h4>
-            <h2 class="text-4xl font-black uppercase tracking-tighter mb-6">Traditions 🇫🇷</h2>
-            <div class="space-y-4 mb-8">
-                <div class="flex gap-6 items-center"> <span class="text-white font-black text-lg w-16">09h00</span> <span class="text-gray-400">Tournoi Pétanque (St Jean)</span> </div>
-                <div class="flex gap-6 items-center"> <span class="text-white font-black text-lg w-16">12h00</span> <span class="text-gray-400">Inauguration Expo + Pique-nique</span> </div>
-                <div class="flex gap-6 items-center"> <span class="text-white font-black text-lg w-16">15h00</span> <span class="text-gray-400">Répétition Chorales/Orchestre (Fréterive)</span> </div>
-                <div class="flex gap-6 items-center text-orange-400"> <span class="font-black text-lg w-16">18h30</span> <span class="font-bold uppercase italic">Danses Folkloriques</span> </div>
+        <div class="glass p-10 rounded-[3rem] border-l-[12px] border-blue-500 tilt-card" data-aos="fade-right">
+            <h4 class="text-blue-500 font-black text-xs tracking-widest uppercase italic mb-2">Lundi 27 Juillet</h4>
+            <h2 class="text-5xl font-black uppercase tracking-tighter mb-8">Ping-Pong & Arts 🎨</h2>
+            <div class="space-y-4 mb-10">
+                <p class="text-gray-400">09h00 : Journée Ping-Pong (St Jean) & Tournoi Enfants -12ans</p>
+                <p class="text-blue-400 font-bold">12h00 : Pique-nique tiré du sac (St Jean)</p>
+                <p class="text-gray-400">15h00 : Installation Expo "Mon cousin est un artiste"</p>
+                <p class="text-gray-400">18h00 : Tournoi Foot (Stade)</p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeUSvYbzVQ7pNVi9Rzo9UbnAuc1IlOiGFi04xy16tzb6NlsQA/viewform?usp=publish-editor" target="_blank" class="bg-orange-600 text-white font-black py-4 rounded-xl text-center uppercase text-xs tracking-widest">Pétanque</a>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvbDFEvAVdJsUJFnYC1Sw5fy1fDYbkAX3fDSoz6KAvVVG-Cw/viewform?usp=publish-editor" target="_blank" class="border border-orange-500 text-orange-500 font-bold py-4 rounded-xl text-center uppercase text-[10px] tracking-widest">Chorale & Orchestre</a>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfr7BPb5JJucwC8Nqg-iliqgZ0kZ21PfuG2iPRK55yytc4NgA/viewform" target="_blank" class="bg-blue-600 text-white font-black py-4 rounded-xl text-center uppercase text-[10px] tracking-widest">Ping-Pong</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdJmXTz4dQog1o8H5w_4FwKbudoVGqOHCfV-Iu-1iMjicE0uQ/viewform" target="_blank" class="border border-blue-500 text-blue-500 font-bold py-4 rounded-xl text-center uppercase text-[10px] tracking-widest">Galet</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdo5emEWseSx3Y7MPg24sXPC0hZUTMYEFzSk8K9jpflGwj9kg/viewform" target="_blank" class="bg-blue-800 text-white font-black py-4 rounded-xl text-center uppercase text-[10px] tracking-widest">Foot</a>
             </div>
         </div>
 
-        <div class="glass p-8 rounded-[2rem] border-l-8 border-savoie card-hover relative overflow-hidden" data-aos="fade-up">
-            <i class="fas fa-bicycle text-white/5 text-9xl absolute -right-4 -top-4"></i>
+        <div class="glass p-10 rounded-[3rem] border-l-[12px] border-orange-500 tilt-card" data-aos="fade-left">
+            <h4 class="text-orange-500 font-black text-xs tracking-widest uppercase italic mb-2">Mardi 28 Juillet</h4>
+            <h2 class="text-5xl font-black uppercase tracking-tighter mb-8 text-right">Traditions 🇫🇷</h2>
+            <div class="space-y-4 mb-10 text-right">
+                <p class="text-gray-400">09h00 : Tournoi Pétanque (St Jean) - Amenez vos boules !</p>
+                <p class="text-gray-400">15h00 : Répétition Chorales/Orchestre (Fréterive)</p>
+                <p class="text-orange-400 font-black text-xl italic uppercase">18h30 : Danses Folkloriques 💃</p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeUSvYbzVQ7pNVi9Rzo9UbnAuc1IlOiGFi04xy16tzb6NlsQA/viewform" target="_blank" class="flex-1 bg-orange-600 text-white font-black py-4 rounded-2xl text-center uppercase text-xs tracking-widest">Pétanque</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvbDFEvAVdJsUJFnYC1Sw5fy1fDYbkAX3fDSoz6KAvVVG-Cw/viewform" target="_blank" class="flex-1 border border-orange-500 text-orange-500 font-bold py-4 rounded-2xl text-center uppercase text-xs tracking-widest">Musique</a>
+            </div>
+        </div>
+
+        <div class="glass p-10 rounded-[3rem] border-l-[12px] border-savoie tilt-card relative overflow-hidden" data-aos="zoom-in">
+            <i class="fas fa-bicycle text-white/5 text-[15rem] absolute -right-10 -bottom-10 rotate-12"></i>
             <h4 class="text-savoie font-black text-xs tracking-widest uppercase italic mb-1">Mercredi 29 Juillet</h4>
-            <h2 class="text-4xl font-black uppercase tracking-tighter">Le Col du Frêne 🚴‍♂️</h2>
-            <p class="text-gray-500 text-xs italic mb-8 uppercase tracking-widest">VAE Bienvenus - Prudence à la descente !</p>
-            <div class="space-y-4 mb-8">
-                <div class="flex gap-6 items-center opacity-60"> <span class="text-white font-black text-lg w-16">07h30</span> <span class="text-gray-400">Départ Non-Chrono</span> </div>
-                <div class="flex gap-6 items-center text-gold"> <span class="font-black text-lg w-16">08h30</span> <span class="font-black uppercase tracking-widest">Départ CHRONO ⚡</span> </div>
-                <div class="flex gap-6 items-center"> <span class="text-white font-black text-lg w-16">10h30</span> <span class="text-gray-400">Rafraîchissement St Pierre</span> </div>
+            <h2 class="text-5xl font-black uppercase tracking-tighter mb-4">Col du Frêne 🚴‍♂️</h2>
+            <div class="space-y-6 mb-10 relative z-10">
+                <div class="flex gap-4 items-baseline"><span class="text-gold font-black text-2xl">08h30</span><span class="text-lg font-bold">Départ CHRONO ⚡</span></div>
+                <p class="text-gray-400">VAE Bienvenus - Prudence à la descente !</p>
                 <div class="h-px bg-white/10 my-4"></div>
-                <div class="flex gap-6 items-center"> <span class="text-white font-black text-lg w-16">15h00</span> <span class="text-gray-300 font-bold">La Dictée de Pivot 🤓</span> </div>
-                <div class="flex gap-6 items-center"> <span class="text-white font-black text-lg w-16">21h00</span> <span class="text-gray-400">Soirée Spectacle (Théâtre/Impro)</span> </div>
+                <p class="text-gray-300 font-bold text-lg"><i class="fas fa-pen-nib mr-3 text-savoie"></i> 15h00 : La Dictée de Pivot 🤓</p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdsivUsXDUrVGUhq-Qn7QBGPSmNPlJYc3LO3PnZqcaEumuClA/viewform?usp=header" target="_blank" class="bg-savoie text-white font-black py-4 rounded-xl text-center uppercase text-xs tracking-widest">Inscription Montée</a>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfUVJc0Rpd0-H9g8kxId-1DQJK5Z_wlhH6K49KQJWHai_23Xg/viewform?usp=publish-editor" target="_blank" class="border border-savoie text-savoie font-bold py-4 rounded-xl text-center uppercase text-[10px] tracking-widest">Inscription Dictée</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdsivUsXDUrVGUhq-Qn7QBGPSmNPlJYc3LO3PnZqcaEumuClA/viewform" target="_blank" class="bg-savoie text-white font-black py-4 rounded-2xl text-center uppercase text-xs tracking-widest">S'inscrire à la Montée</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfUVJc0Rpd0-H9g8kxId-1DQJK5Z_wlhH6K49KQJWHai_23Xg/viewform" target="_blank" class="border border-savoie text-savoie font-bold py-4 rounded-2xl text-center uppercase text-xs tracking-widest">S'inscrire à la Dictée</a>
             </div>
         </div>
 
-        <div class="glass p-8 rounded-[2rem] border-l-8 border-purple-500 card-hover" data-aos="fade-right">
-            <h4 class="text-purple-500 font-black text-xs tracking-widest uppercase italic mb-1">Jeudi 30 Juillet</h4>
-            <h2 class="text-4xl font-black uppercase tracking-tighter mb-6">Triathlon & Musique 🎸</h2>
-            <div class="space-y-4 mb-8">
-                <div class="flex gap-6 items-center"> <span class="text-white font-black text-lg w-16">10h00</span> <span class="text-gray-400">Triathlon Relais Mixte (Plan d'eau)</span> </div>
-                <div class="flex gap-6 items-center"> <span class="text-white font-black text-lg w-16">11h00</span> <span class="text-gray-400">Concours Natation</span> </div>
-                <div class="flex gap-6 items-center text-purple-400"> <span class="font-black text-lg w-16">18h00</span> <span class="font-bold">Concert Orchestre (Église Fréterive)</span> </div>
-                <div class="flex gap-6 items-center"> <span class="text-white font-black text-lg w-16">20h00</span> <span class="text-gray-400">Repas chez Bernard & Simone</span> </div>
+        <div class="glass p-10 rounded-[3rem] border-l-[12px] border-purple-500 tilt-card" data-aos="fade-right">
+            <h4 class="text-purple-500 font-black text-xs tracking-widest uppercase italic mb-2">Jeudi 30 Juillet</h4>
+            <h2 class="text-5xl font-black uppercase tracking-tighter mb-8">Tri & Musique 🎸</h2>
+            <div class="space-y-4 mb-10">
+                <p class="text-gray-400">10h00 : Triathlon Relais Mixte (Plan d'eau St Pierre)</p>
+                <p class="text-gray-400">11h00 : Concours Natation + Pique-nique</p>
+                <p class="text-purple-400 font-black text-xl uppercase">18h00 : Concert (Fréterive)</p>
+                <p class="text-gray-500 italic">20h00 : Repas chez Bernard & Simone</p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeSDcmjzKKdpNFceJKy8EH3qLfY_EWvAZfBEpB_qJKOu4UgKQ/viewform?usp=publish-editor" target="_blank" class="bg-purple-600 text-white font-black py-4 rounded-xl text-center uppercase text-xs tracking-widest">Triathlon</a>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeEWkBW5VaXcznqEdh-DBj1sYdPKwDWVBUdmO7E6C0VYuwAUA/viewform?usp=publish-editor" target="_blank" class="border border-purple-500 text-purple-500 font-bold py-4 rounded-xl text-center uppercase text-[10px] tracking-widest">Natation</a>
+            <div class="grid grid-cols-2 gap-4">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeSDcmjzKKdpNFceJKy8EH3qLfY_EWvAZfBEpB_qJKOu4UgKQ/viewform" target="_blank" class="bg-purple-600 text-white font-black py-4 rounded-2xl text-center uppercase text-[10px] tracking-widest">Triathlon</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeEWkBW5VaXcznqEdh-DBj1sYdPKwDWVBUdmO7E6C0VYuwAUA/viewform" target="_blank" class="border border-purple-500 text-purple-500 font-bold py-4 rounded-2xl text-center uppercase text-[10px] tracking-widest">Natation</a>
             </div>
         </div>
 
-        <div class="glass p-8 rounded-[2rem] border-l-8 border-green-500 card-hover" data-aos="fade-left">
-            <h4 class="text-green-500 font-black text-xs tracking-widest uppercase italic mb-1">Vendredi 31 Juillet</h4>
-            <h2 class="text-4xl font-black uppercase tracking-tighter mb-6">Montagne 🏔️</h2>
-            <div class="bg-black/40 p-6 rounded-2xl mb-8 space-y-4 border border-white/5">
-                <div class="flex items-start gap-4 text-sm">
-                    <span class="text-white font-black">08h30</span>
-                    <div class="flex-1 space-y-2 text-gray-400">
-                        <p>Option 1 : <strong class="text-white uppercase tracking-tighter">Beaufortain</strong></p>
-                        <p>Option 2 : <strong class="text-white uppercase tracking-tighter">Belledonne</strong></p>
-                    </div>
-                </div>
+        <div class="glass p-10 rounded-[3rem] border-l-[12px] border-green-500 tilt-card" data-aos="fade-left">
+            <h4 class="text-green-500 font-black text-xs tracking-widest uppercase italic mb-2">Vendredi 31 Juillet</h4>
+            <h2 class="text-5xl font-black uppercase tracking-tighter mb-8 text-right text-green-500">Montagne 🏔️</h2>
+            <div class="bg-black/60 p-8 rounded-3xl border border-white/5 mb-10">
+                <p class="font-black text-white mb-4">DÉPART 08H30 :</p>
+                <ul class="space-y-4 text-gray-400">
+                    <li class="flex items-center gap-4"><i class="fas fa-mountain text-green-500"></i> Option 1 : Beaufortain</li>
+                    <li class="flex items-center gap-4"><i class="fas fa-mountain text-green-500"></i> Option 2 : Belledonne</li>
+                </ul>
             </div>
-            <p class="text-right text-xs text-gray-500 italic mb-6">18h00 : Rafraîchissement chez Monique et Eric</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfDH2Lr3ER_TmwuC3ZceMPeJB8S_2Nu4Rdn0kBB6pbAPKqAvg/viewform?usp=publish-editor" target="_blank" class="block w-full bg-green-600 text-white font-black py-4 rounded-xl text-center uppercase text-xs tracking-widest">S'inscrire à la Rando</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfDH2Lr3ER_TmwuC3ZceMPeJB8S_2Nu4Rdn0kBB6pbAPKqAvg/viewform" target="_blank" class="block w-full bg-green-700 text-white font-black py-5 rounded-2xl text-center uppercase text-xs tracking-widest hover:bg-green-600 transition">S'inscrire à la Rando</a>
         </div>
 
-        <div class="relative group" data-aos="zoom-in">
-            <div class="absolute -inset-1 bg-gradient-to-r from-gold via-white to-gold rounded-[2rem] blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
-            <div class="glass p-10 rounded-[2rem] border-2 border-gold text-center relative overflow-hidden">
-                <span class="px-4 py-1 border border-gold text-gold text-[10px] font-black uppercase rounded-full mb-6 inline-block tracking-widest">Le Grand Final</span>
-                <h2 class="text-6xl font-black uppercase italic tracking-tighter text-white mb-2">Journée Finale</h2>
-                <p class="text-gray-500 text-xs font-bold uppercase tracking-[0.3em] mb-10">Trail • Médailles • Fête</p>
+        <div class="relative group" data-aos="zoom-in" id="final-card" onclick="fireConfetti()">
+            <div class="absolute -inset-2 bg-gradient-to-r from-gold via-white to-gold rounded-[4rem] blur opacity-20 group-hover:opacity-60 transition duration-1000"></div>
+            <div class="glass p-12 rounded-[3.5rem] border-2 border-gold text-center relative overflow-hidden">
+                <span class="px-6 py-2 bg-gold text-black text-xs font-black uppercase rounded-full mb-8 inline-block tracking-[0.3em]">Grand Final</span>
+                <h2 class="text-7xl md:text-8xl font-black uppercase italic tracking-tighter text-white mb-4">Journée Finale</h2>
+                <p class="text-gray-500 text-sm font-bold uppercase tracking-[0.5em] mb-12">Trail • Médailles • Party</p>
                 
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-10 text-left">
-                    <div class="bg-black/60 p-3 rounded-xl border border-white/5"><span class="text-gold font-bold text-xs block">08h30</span><span class="text-[10px] uppercase text-gray-500">Trail 12/6km</span></div>
-                    <div class="bg-black/60 p-3 rounded-xl border border-white/5"><span class="text-gold font-bold text-xs block">11h00</span><span class="text-[10px] uppercase text-gray-500">Recueillement</span></div>
-                    <div class="bg-black/60 p-3 rounded-xl border border-white/5"><span class="text-gold font-bold text-xs block">13h00</span><span class="text-[10px] uppercase text-gray-500">Pique-nique (St J)</span></div>
-                    <div class="bg-black/60 p-3 rounded-xl border border-white/5"><span class="text-gold font-bold text-xs block">15h00</span><span class="text-[10px] uppercase text-gray-500">Relais Folklo</span></div>
-                    <div class="bg-black/60 p-3 rounded-xl border border-white/5"><span class="text-gold font-bold text-xs block">17h00</span><span class="text-[10px] uppercase text-gray-500">Démo Ping-Pong</span></div>
-                    <div class="bg-gold p-3 rounded-xl text-black"><span class="font-black text-xs block">17h30</span><span class="text-[10px] uppercase font-bold tracking-tighter">Médailles 🏆</span></div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12 text-left">
+                    <div class="bg-black/60 p-4 rounded-2xl border border-white/5"><span class="text-gold font-black text-lg block">08h30</span><span class="text-[10px] uppercase text-gray-500">Trail 12/6km / KV</span></div>
+                    <div class="bg-black/60 p-4 rounded-2xl border border-white/5"><span class="text-gold font-black text-lg block">15h00</span><span class="text-[10px] uppercase text-gray-500">Relais Folklo</span></div>
+                    <div class="bg-gold p-4 rounded-2xl text-black"><span class="font-black text-lg block">17h30</span><span class="text-[10px] uppercase font-bold">Médailles 🏆</span></div>
                 </div>
 
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc2zaC2uPFIcfVRlqcc22KSEmtcNbxb9gaGndQVv4RyeVbZdw/viewform?usp=publish-editor" target="_blank" class="block w-full bg-gold text-black font-black py-5 rounded-2xl text-xl uppercase tracking-tighter hover:scale-105 transition mb-6 shadow-xl shadow-gold/20">S'inscrire au Trail</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc2zaC2uPFIcfVRlqcc22KSEmtcNbxb9gaGndQVv4RyeVbZdw/viewform" target="_blank" class="block w-full bg-white text-black font-black py-6 rounded-3xl text-2xl uppercase tracking-tighter hover:scale-105 transition mb-10 shadow-2xl">S'inscrire au Trail</a>
                 
-                <p class="text-xs text-gray-500 mb-6 uppercase tracking-widest">18h30 : Concert Rock (St Jean)</p>
-                <div class="bg-savoie text-white py-4 px-6 rounded-2xl font-black text-lg shadow-lg mb-4 uppercase italic">20h00 : SOIRÉE FINALE</div>
-                <p class="text-gold font-black uppercase tracking-[0.2em] text-sm italic">22h00 : ALORS ON DANSE !</p>
-            </div>
-        </div>
-
-        <div class="glass p-8 rounded-[2rem] border-l-8 border-bonus card-hover" data-aos="fade-up">
-            <div class="flex justify-between items-start mb-6">
-                <div>
-                    <h4 class="text-bonus font-black text-xs tracking-widest uppercase mb-1 italic">Dimanche 2 Août</h4>
-                    <h2 class="text-3xl font-black uppercase tracking-tighter">Pour ceux qui restent... 😎</h2>
+                <div class="space-y-4">
+                    <p class="text-white font-black text-3xl uppercase italic tracking-tighter">20h00 : SOIRÉE FINALE</p>
+                    <p class="text-gold font-black uppercase tracking-[0.3em] text-lg">22h00 : ALORS ON DANSE !</p>
                 </div>
-                <i class="fas fa-sun text-white text-2xl"></i>
-            </div>
-            <div class="space-y-6 text-sm">
-                <div class="flex items-center gap-4 text-gray-300"> <i class="fas fa-bicycle text-bonus text-xl w-6"></i> <span><strong>Col du Galibier</strong> (Départ Valloire/St Michel)</span> </div>
-                <div class="flex items-center gap-4 text-gray-300"> <i class="fas fa-hiking text-bonus text-xl w-6"></i> <span><strong>Rando Arclusaz</strong> (Départ Col du Frêne)</span> </div>
-                <div class="flex items-center gap-4 text-gray-300"> <i class="fas fa-mountain text-bonus text-xl w-6"></i> <span>Session Escalade</span> </div>
-                <div class="h-px bg-white/10 my-6"></div>
-                <p class="text-center text-gray-500 font-bold uppercase tracking-widest text-xs italic">Fin des Olympiades 2026 👋</p>
             </div>
         </div>
 
-        <div class="text-center pb-10">
-            <a href="souvenirs1.html" class="inline-block glass border-savoie text-white font-black uppercase tracking-widest py-6 px-12 rounded-full hover:bg-savoie transition group">
-                <i class="fas fa-film mr-3 group-hover:rotate-12 transition"></i> Voir les Vidéos Souvenirs
+        <div class="glass p-10 rounded-[3rem] border-l-[12px] border-bonus tilt-card" data-aos="fade-up">
+            <h4 class="text-bonus font-black text-xs tracking-widest uppercase mb-2 italic">Dimanche 2 Août</h4>
+            <h2 class="text-4xl font-black uppercase tracking-tighter">Bonus Courageux ❄️</h2>
+            <div class="mt-8 grid gap-4 text-gray-400">
+                <div class="flex items-center gap-4 bg-white/5 p-4 rounded-2xl"> <i class="fas fa-mountain text-bonus text-xl"></i> <span>Col du Galibier</span> </div>
+                <div class="flex items-center gap-4 bg-white/5 p-4 rounded-2xl"> <i class="fas fa-hiking text-bonus text-xl"></i> <span>Randonnée Arclusaz</span> </div>
+            </div>
+        </div>
+
+        <div class="text-center pb-20">
+            <a href="souvenirs1.html" class="inline-block px-12 py-6 bg-white/10 hover:bg-savoie text-white font-black rounded-full transition-all duration-500 group border border-white/10">
+                <i class="fas fa-film mr-4 group-hover:rotate-12 transition"></i> DÉCOUVRIR LES SOUVENIRS
             </a>
         </div>
     </section>
 
-    <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-md h-20 bg-black/90 backdrop-blur-2xl rounded-[2.5rem] flex justify-around items-center px-4 z-50 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-        <a href="index1.html" class="flex flex-col items-center nav-active"><i class="fas fa-calendar-alt text-2xl"></i><span class="text-[9px] font-black uppercase mt-1">Programme</span></a>
-        <a href="souvenirs1.html" class="flex flex-col items-center text-gray-500 hover:text-white transition"><i class="fas fa-play-circle text-2xl"></i><span class="text-[9px] font-black uppercase mt-1">Vidéos</span></a>
-        <a href="lieux1.html" class="flex flex-col items-center text-gray-500 hover:text-white transition"><i class="fas fa-map-marked-alt text-2xl"></i><span class="text-[9px] font-black uppercase mt-1">Lieux</span></a>
-        <a href="podium1.html" class="flex flex-col items-center text-gray-500 hover:text-white transition"><i class="fas fa-trophy text-2xl"></i><span class="text-[9px] font-black uppercase mt-1">Podium</span></a>
+    <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[94%] max-w-lg h-24 bg-black/90 backdrop-blur-3xl rounded-[3rem] flex justify-around items-center px-6 z-[100] border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.8)]">
+        <a href="index1.html" class="flex flex-col items-center text-savoie"><i class="fas fa-calendar-alt text-2xl"></i><span class="text-[9px] font-black uppercase mt-2">Programme</span></a>
+        <a href="souvenirs1.html" class="flex flex-col items-center text-gray-500 hover:text-white transition"><i class="fas fa-play text-2xl"></i><span class="text-[9px] font-black uppercase mt-2">Vidéos</span></a>
+        <div class="relative -top-8">
+            <div class="w-20 h-20 bg-savoie rounded-full flex items-center justify-center text-white shadow-[0_0_40px_rgba(227,0,27,0.5)] border-8 border-[#050505] transform hover:scale-110 transition active:scale-95">
+                <img src="logo.png" class="w-10 h-10 object-contain">
+            </div>
+        </div>
+        <a href="lieux1.html" class="flex flex-col items-center text-gray-500 hover:text-white transition"><i class="fas fa-map-marked-alt text-2xl"></i><span class="text-[9px] font-black uppercase mt-2">Lieux</span></a>
+        <a href="podium1.html" class="flex flex-col items-center text-gray-500 hover:text-white transition"><i class="fas fa-trophy text-2xl"></i><span class="text-[9px] font-black uppercase mt-2">Podium</span></a>
     </nav>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
     <script>
-        AOS.init({ once: true });
+        AOS.init({ duration: 1000, once: true });
+
+        // GSAP Intro
+        gsap.from("#hero-logo", { duration: 1.5, y: -100, opacity: 0, ease: "bounce.out" });
+        gsap.from("#hero-title", { duration: 1.2, delay: 0.5, scale: 0.8, opacity: 0, ease: "power4.out" });
+        gsap.from("#hero-subtitle", { duration: 1, delay: 1, y: 20, opacity: 0 });
+
+        // Scroll Progress Bar
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+        };
+
+        // Countdown
         const targetDate = new Date("July 25, 2026 09:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
@@ -256,9 +311,33 @@
             }
         }, 1000);
 
-        particlesJS("particles-js", {
-            "particles": { "number": { "value": 40 }, "color": { "value": "#ffffff" }, "opacity": { "value": 0.1 }, "size": { "value": 2 }, "move": { "enable": true, "speed": 0.8, "direction": "bottom-right" } }
+        // Tilt Effect
+        const cards = document.querySelectorAll('.tilt-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+            });
         });
+
+        // Particles
+        particlesJS("particles-js", {
+            "particles": { "number": { "value": 60 }, "color": { "value": "#ffffff" }, "opacity": { "value": 0.1 }, "size": { "value": 2 }, "line_linked": { "enable": false }, "move": { "enable": true, "speed": 1 } }
+        });
+
+        // Confetti
+        function fireConfetti() {
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#FFD700', '#E3001B', '#ffffff'] });
+        }
     </script>
 </body>
 </html>
