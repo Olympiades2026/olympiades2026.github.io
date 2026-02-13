@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Podium - Olympiades 2026</title>
     <link rel="icon" type="image/png" href="logo.png">
 
@@ -16,13 +16,7 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        'savoie': '#E3001B',
-                        'gold': '#FFD700',
-                        'silver': '#C0C0C0',
-                        'bronze': '#CD7F32',
-                        'dark-bg': '#0a0a0a',
-                    },
+                    colors: { 'savoie': '#E3001B', 'gold': '#FFD700', 'silver': '#C0C0C0', 'bronze': '#CD7F32', 'dark-bg': '#0a0a0a' },
                     fontFamily: { sans: ['Montserrat', 'sans-serif'] }
                 }
             }
@@ -30,66 +24,50 @@
     </script>
 
     <style>
-        body { background-color: #0a0a0a; color: #e2e8f0; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
-        
-        /* IMAGE DE FOND FIXE (Comme sur l'index) */
-        .global-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(10,10,10,0.8), rgba(10,10,10,0.8)), url('IMG_3811-2.jpg') center/cover no-repeat fixed;
-            z-index: -1;
-        }
-
-        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        body { background-color: #0a0a0a; color: #e2e8f0; font-family: 'Montserrat', sans-serif; }
+        .global-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('IMG_3811-2.jpg'); background-size: cover; background-position: center; z-index: -2; }
+        .bg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.9)); z-index: -1; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1); }
         .tilt-card { transition: transform 0.1s ease-out; transform-style: preserve-3d; }
-        #particles-js { position: fixed; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.3; }
+        #particles-js { position: fixed; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.2; }
         .nav-active { color: #FFD700 !important; }
-
-        /* Effet de lueur sur le titre */
-        .text-glow { text-shadow: 0 0 20px rgba(227, 0, 27, 0.5); }
     </style>
 </head>
 
 <body class="pb-32 selection:bg-savoie selection:text-white">
     <div class="global-bg"></div>
+    <div class="bg-overlay"></div>
     <div id="particles-js"></div>
 
-    <header class="py-20 px-4 text-center relative overflow-hidden">
+    <header class="py-16 px-4 text-center relative overflow-hidden">
         <div class="relative z-10" id="header-content">
-            <div class="inline-block mb-4 px-4 py-1 border border-savoie/50 rounded-full bg-savoie/10 backdrop-blur-md">
-                <span class="text-savoie text-[10px] font-black uppercase tracking-[0.4em]">Classement Officiel</span>
+            <div class="inline-block mb-4 px-4 py-1 border border-gold/30 rounded-full bg-gold/5 backdrop-blur-md">
+                <span class="text-gold text-[10px] font-black uppercase tracking-[0.4em]">Hall of Fame</span>
             </div>
-            <h1 class="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white text-glow">
-                Le <span class="text-gold italic">Podium</span> 🏆
-            </h1>
-            <p class="text-gray-300 text-xs font-bold uppercase tracking-[0.3em] mt-4 opacity-80">Les Rois & Reines de l'Olympe</p>
+            <h1 class="text-4xl md:text-7xl font-black uppercase tracking-tighter text-white">Le <span class="text-gold italic">Podium</span> 🏆</h1>
+            <p class="text-gray-400 text-xs font-bold uppercase tracking-[0.3em] mt-4">Les Rois & Reines de l'Olympe</p>
         </div>
     </header>
 
-    <main class="px-4 py-8 max-w-4xl mx-auto space-y-12 relative z-10">
+    <main class="px-4 py-4 max-w-4xl mx-auto space-y-12 relative z-10">
 
         <div class="glass rounded-[2rem] p-8 border-t-4 border-blue-500 tilt-card" data-aos="fade-up">
             <div class="flex items-center gap-4 mb-8">
                 <i class="fas fa-table-tennis-paddle-ball text-blue-500 text-3xl"></i>
-                <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Ping-Pong</h2>
+                <h2 class="text-2xl font-black text-white uppercase tracking-tighter">Ping-Pong</h2>
             </div>
             <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-black/60 p-5 rounded-2xl border border-white/10">
-                    <h3 class="text-center font-bold text-blue-400 mb-4 uppercase text-xs tracking-widest border-b border-white/10 pb-2">Adultes</h3>
+                <div class="bg-black/60 p-5 rounded-2xl border border-white/5">
+                    <h3 class="text-center font-bold text-blue-400 mb-4 uppercase text-[10px] tracking-widest border-b border-white/10 pb-2">Adultes</h3>
                     <ul class="space-y-4">
                         <li class="flex items-center gap-4"><i class="fas fa-medal text-gold text-2xl"></i> <span class="font-bold">À venir</span></li>
                         <li class="flex items-center gap-4 opacity-50"><i class="fas fa-medal text-silver text-2xl"></i> <span>À venir</span></li>
-                        <li class="flex items-center gap-4 opacity-50"><i class="fas fa-medal text-bronze text-2xl"></i> <span>À venir</span></li>
                     </ul>
                 </div>
-                <div class="bg-black/60 p-5 rounded-2xl border border-white/10">
-                    <h3 class="text-center font-bold text-blue-400 mb-4 uppercase text-xs tracking-widest border-b border-white/10 pb-2">Jeunes</h3>
+                <div class="bg-black/60 p-5 rounded-2xl border border-white/5">
+                    <h3 class="text-center font-bold text-blue-400 mb-4 uppercase text-[10px] tracking-widest border-b border-white/10 pb-2">Jeunes</h3>
                     <ul class="space-y-4">
                         <li class="flex items-center gap-4"><i class="fas fa-medal text-gold text-2xl"></i> <span class="font-bold">À venir</span></li>
-                        <li class="flex items-center gap-4 opacity-50"><i class="fas fa-medal text-silver text-2xl"></i> <span>À venir</span></li>
                     </ul>
                 </div>
             </div>
@@ -98,70 +76,47 @@
         <div class="glass rounded-[2rem] p-8 border-t-4 border-gray-400 tilt-card" data-aos="fade-up">
             <div class="flex items-center gap-4 mb-8">
                 <i class="fas fa-circle text-gray-300 text-3xl"></i>
-                <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Jeu de Galet</h2>
+                <h2 class="text-2xl font-black text-white uppercase tracking-tighter">Jeu de Galet</h2>
             </div>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-black/60 p-5 rounded-2xl border border-white/10 text-center">
-                    <h3 class="font-bold text-gray-400 mb-4 uppercase text-xs tracking-widest border-b border-white/10 pb-2">Adultes</h3>
-                    <div class="flex items-center justify-center gap-3"><i class="fas fa-medal text-gold text-2xl"></i> <span class="font-bold">À venir</span></div>
-                </div>
-                <div class="bg-black/60 p-5 rounded-2xl border border-white/10 text-center">
-                    <h3 class="font-bold text-gray-400 mb-4 uppercase text-xs tracking-widest border-b border-white/10 pb-2">Jeunes</h3>
-                    <div class="flex items-center justify-center gap-3"><i class="fas fa-medal text-gold text-2xl"></i> <span class="font-bold">À venir</span></div>
-                </div>
+            <div class="grid md:grid-cols-2 gap-6 text-center text-sm">
+                <div class="bg-black/60 p-5 rounded-2xl border border-white/5"><h3 class="font-bold text-gray-400 mb-2 uppercase text-[10px]">Adultes</h3><i class="fas fa-medal text-gold text-xl mr-2"></i> À venir</div>
+                <div class="bg-black/60 p-5 rounded-2xl border border-white/5"><h3 class="font-bold text-gray-400 mb-2 uppercase text-[10px]">Jeunes</h3><i class="fas fa-medal text-gold text-xl mr-2"></i> À venir</div>
             </div>
         </div>
 
         <div class="glass rounded-[2rem] p-8 border-t-4 border-purple-400 tilt-card" data-aos="fade-up">
             <div class="flex items-center gap-4 mb-8">
                 <i class="fas fa-paint-brush text-purple-400 text-3xl"></i>
-                <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Expo Artiste</h2>
+                <h2 class="text-2xl font-black text-white uppercase tracking-tighter">Expo Artiste</h2>
             </div>
-            <div class="bg-black/60 p-8 rounded-2xl border border-white/10 text-center">
-                <h3 class="font-bold text-purple-400 mb-4 uppercase text-xs tracking-widest border-b border-white/10 pb-4">Les artistes</h3>
-                <div class="flex items-center justify-center gap-4"><i class="fas fa-star text-gold text-3xl animate-pulse"></i> <span class="text-2xl font-black italic uppercase tracking-widest">À venir</span></div>
+            <div class="bg-black/60 p-8 rounded-2xl border border-white/5 text-center">
+                <h3 class="font-bold text-purple-400 mb-4 uppercase text-[10px] tracking-widest">Les artistes</h3>
+                <div class="flex items-center justify-center gap-4 mt-2"><i class="fas fa-star text-gold text-2xl animate-pulse"></i> <span class="text-xl font-black italic uppercase">À venir</span></div>
             </div>
         </div>
 
         <div class="glass rounded-[2rem] p-8 border-t-4 border-yellow-300 tilt-card" data-aos="fade-up">
             <div class="flex items-center gap-4 mb-8">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-yellow-300 fill-current">
-                    <path d="M12 2L8 10H16L12 2Z" opacity="0.5"/><path d="M12 22C14.2091 22 16 20.2091 16 18H8C8 20.2091 9.79086 22 12 22Z"/><path d="M19 10L16 18H8L5 10H19Z"/>
-                </svg>
-                <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Badminton</h2>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-yellow-300 fill-current"><path d="M12 2L8 10H16L12 2Z" opacity="0.5"/><path d="M12 22C14.2091 22 16 20.2091 16 18H8C8 20.2091 9.79086 22 12 22Z"/><path d="M19 10L16 18H8L5 10H19Z"/></svg>
+                <h2 class="text-2xl font-black text-white uppercase tracking-tighter">Badminton</h2>
             </div>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-black/60 p-5 rounded-2xl border border-white/10 text-center">
-                    <h3 class="font-bold text-yellow-300 mb-4 uppercase text-xs">Adultes</h3>
-                    <div class="flex items-center justify-center gap-2"><i class="fas fa-medal text-gold text-2xl"></i> <span>À venir</span></div>
-                </div>
-                <div class="bg-black/60 p-5 rounded-2xl border border-white/10 text-center">
-                    <h3 class="font-bold text-yellow-300 mb-4 uppercase text-xs">Jeunes</h3>
-                    <div class="flex items-center justify-center gap-2"><i class="fas fa-medal text-gold text-2xl"></i> <span>À venir</span></div>
-                </div>
+            <div class="grid md:grid-cols-2 gap-6 text-center text-sm">
+                <div class="bg-black/60 p-5 rounded-2xl border border-white/5"><h3 class="font-bold text-yellow-300 mb-2 uppercase text-[10px]">Adultes</h3>À venir</div>
+                <div class="bg-black/60 p-5 rounded-2xl border border-white/5"><h3 class="font-bold text-yellow-300 mb-2 uppercase text-[10px]">Jeunes</h3>À venir</div>
             </div>
         </div>
 
         <div class="glass rounded-[2rem] p-8 border-t-4 border-gold tilt-card" data-aos="fade-up">
             <div class="flex items-center gap-4 mb-8">
                 <i class="fas fa-volleyball-ball text-gold text-3xl"></i>
-                <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Volley-Ball</h2>
+                <h2 class="text-2xl font-black text-white uppercase tracking-tighter">Volley-Ball</h2>
             </div>
-            <div class="bg-black/70 p-8 rounded-2xl border border-gold/20 backdrop-blur-md">
-                <h3 class="text-center font-bold text-gold mb-6 uppercase text-xs tracking-widest border-b border-white/10 pb-2">Classement Équipes</h3>
-                <div class="space-y-6">
-                    <div class="flex items-center gap-6 p-4 bg-gold/5 rounded-xl border border-gold/30">
-                        <i class="fas fa-trophy text-gold text-4xl"></i>
-                        <span class="text-2xl font-black text-white uppercase italic">À venir</span>
-                    </div>
-                    <div class="flex items-center gap-6 pl-6 italic text-silver/60">
-                        <span class="font-black text-2xl w-8">2</span>
-                        <span class="text-xl">À venir</span>
-                    </div>
-                    <div class="flex items-center gap-6 pl-6 italic text-bronze/60">
-                        <span class="font-black text-2xl w-8">3</span>
-                        <span class="text-xl">À venir</span>
-                    </div>
+            <div class="bg-black/70 p-6 rounded-2xl border border-gold/20 backdrop-blur-md">
+                <h3 class="text-center font-bold text-gold mb-6 uppercase text-[10px] tracking-widest border-b border-white/10 pb-2">Classement Équipes</h3>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-6 p-4 bg-gold/5 rounded-xl border border-gold/20"><i class="fas fa-trophy text-gold text-3xl"></i><span class="text-xl font-bold uppercase italic">À venir</span></div>
+                    <div class="flex items-center gap-6 pl-6 text-silver/60 italic"><span class="font-black text-xl w-6">2</span><span>À venir</span></div>
+                    <div class="flex items-center gap-6 pl-6 text-bronze/60 italic"><span class="font-black text-xl w-6">3</span><span>À venir</span></div>
                 </div>
             </div>
         </div>
@@ -169,48 +124,39 @@
         <div class="glass rounded-[2rem] p-8 border-t-4 border-green-500 tilt-card" data-aos="fade-up">
             <div class="flex items-center gap-4 mb-8">
                 <i class="fas fa-futbol text-green-500 text-3xl"></i>
-                <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Foot au Stade</h2>
+                <h2 class="text-2xl font-black text-white uppercase tracking-tighter">Foot au Stade</h2>
             </div>
-            <div class="bg-black/60 p-6 rounded-2xl border border-white/10 text-center">
-                <h3 class="font-bold text-green-500 mb-4 uppercase text-xs tracking-widest">Classement Équipes</h3>
-                <div class="flex items-center justify-center gap-3 mt-4"><i class="fas fa-trophy text-gold text-2xl"></i> <span class="text-xl font-bold uppercase">À venir</span></div>
+            <div class="bg-black/60 p-6 rounded-2xl border border-white/5 text-center">
+                <h3 class="font-bold text-green-500 mb-4 uppercase text-[10px]">Classement Équipes</h3>
+                <div class="flex items-center justify-center gap-3"><i class="fas fa-medal text-gold text-2xl"></i> <span class="font-bold uppercase">À venir</span></div>
             </div>
         </div>
 
         <div class="glass rounded-[2rem] p-8 border-t-4 border-orange-500 tilt-card" data-aos="fade-up">
             <div class="flex items-center gap-4 mb-8">
                 <i class="fas fa-bowling-ball text-orange-500 text-3xl"></i>
-                <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Pétanque</h2>
+                <h2 class="text-2xl font-black text-white uppercase tracking-tighter">Pétanque</h2>
             </div>
-            <div class="bg-black/60 p-6 rounded-2xl border border-white/10 text-center">
-                <h3 class="font-bold text-orange-500 mb-4 uppercase text-xs tracking-widest">Classement Équipes</h3>
-                <div class="flex items-center justify-center gap-3 mt-4"><i class="fas fa-trophy text-gold text-2xl"></i> <span class="text-xl font-bold uppercase">À venir</span></div>
+            <div class="bg-black/60 p-6 rounded-2xl border border-white/5 text-center">
+                <h3 class="font-bold text-orange-500 mb-4 uppercase text-[10px]">Classement Équipes</h3>
+                <div class="flex items-center justify-center gap-3"><i class="fas fa-medal text-gold text-2xl"></i> <span class="font-bold uppercase">À venir</span></div>
             </div>
         </div>
 
         <div class="glass rounded-[2rem] p-8 border-t-4 border-savoie tilt-card" data-aos="fade-up">
             <div class="flex items-center gap-4 mb-8">
                 <i class="fas fa-bicycle text-savoie text-3xl"></i>
-                <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Le Col du Frêne</h2>
+                <h2 class="text-2xl font-black text-white uppercase tracking-tighter">Col du Frêne</h2>
             </div>
-            <div class="grid md:grid-cols-2 gap-6 mb-10">
-                <div class="bg-black/60 p-5 rounded-2xl border border-white/10 text-center">
-                    <h3 class="font-bold text-savoie mb-4 uppercase text-[10px]">Adultes</h3>
-                    <i class="fas fa-medal text-gold text-xl mr-2"></i> À venir
-                </div>
-                <div class="bg-black/60 p-5 rounded-2xl border border-white/10 text-center">
-                    <h3 class="font-bold text-savoie mb-4 uppercase text-[10px]">Jeunes</h3>
-                    <i class="fas fa-medal text-gold text-xl mr-2"></i> À venir
-                </div>
+            <div class="grid md:grid-cols-2 gap-4 text-center text-sm mb-8">
+                <div class="bg-black/60 p-4 rounded-xl border border-white/5"><h3 class="font-bold text-savoie uppercase text-[10px] mb-2">Adultes</h3>À venir</div>
+                <div class="bg-black/60 p-4 rounded-xl border border-white/5"><h3 class="font-bold text-savoie uppercase text-[10px] mb-2">Jeunes</h3>À venir</div>
             </div>
-            <div class="border-t border-white/10 pt-8">
-                <div class="flex items-center justify-center gap-3 mb-6">
-                    <i class="fas fa-pen-alt text-gray-400"></i>
-                    <h3 class="text-xl font-bold uppercase italic tracking-widest">Dictée de Pivot</h3>
-                </div>
-                <div class="grid grid-cols-2 gap-4 text-center">
-                    <div class="bg-white/10 p-3 rounded-xl"><p class="text-[10px] text-gray-400 uppercase mb-1">Adultes</p>À venir</div>
-                    <div class="bg-white/10 p-3 rounded-xl"><p class="text-[10px] text-gray-400 uppercase mb-1">Jeunes</p>À venir</div>
+            <div class="border-t border-white/10 pt-6">
+                <h3 class="text-center font-bold uppercase text-xs mb-4"><i class="fas fa-pen-alt mr-2 text-gray-500"></i> Dictée de Pivot</h3>
+                <div class="grid grid-cols-2 gap-3 text-center text-xs text-gray-400">
+                    <div class="bg-white/5 p-2 rounded-lg">Adultes: À venir</div>
+                    <div class="bg-white/5 p-2 rounded-lg">Jeunes: À venir</div>
                 </div>
             </div>
         </div>
@@ -218,16 +164,13 @@
         <div class="glass rounded-[2rem] p-8 border-t-4 border-purple-500 tilt-card" data-aos="fade-up">
             <div class="flex items-center gap-4 mb-8">
                 <i class="fas fa-swimmer text-purple-500 text-3xl"></i>
-                <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Triathlon & Natation</h2>
+                <h2 class="text-2xl font-black text-white uppercase tracking-tighter text-sm md:text-2xl">Triathlon & Natation</h2>
             </div>
-            <div class="space-y-6">
-                <div class="bg-black/60 p-6 rounded-2xl border border-white/10 text-center">
-                    <h3 class="font-bold text-purple-400 mb-4 uppercase text-xs">Relais Mixte (Triathlon)</h3>
-                    <div class="flex items-center justify-center gap-4"><i class="fas fa-trophy text-gold"></i> <span class="font-bold uppercase">À venir</span></div>
-                </div>
-                <div class="grid grid-cols-2 gap-4 text-center text-sm">
-                    <div class="bg-white/5 p-4 rounded-xl"><p class="text-[10px] text-purple-400 font-bold uppercase mb-1">Natation Adultes</p>À venir</div>
-                    <div class="bg-white/5 p-4 rounded-xl"><p class="text-[10px] text-purple-400 font-bold uppercase mb-1">Natation Jeunes</p>À venir</div>
+            <div class="space-y-4 text-center text-sm">
+                <div class="bg-black/60 p-4 rounded-xl border border-white/5"><p class="text-purple-400 font-bold uppercase text-[10px] mb-1">Relais Mixte</p>À venir</div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-white/5 p-3 rounded-lg"><p class="text-purple-400 font-bold text-[9px] mb-1">Natation Adultes</p>À venir</div>
+                    <div class="bg-white/5 p-3 rounded-lg"><p class="text-purple-400 font-bold text-[9px] mb-1">Natation Jeunes</p>À venir</div>
                 </div>
             </div>
         </div>
@@ -235,37 +178,28 @@
         <div class="glass rounded-[2rem] p-8 border-t-4 border-gold tilt-card" data-aos="fade-up">
             <div class="flex items-center gap-4 mb-8">
                 <i class="fas fa-running text-gold text-3xl"></i>
-                <h2 class="text-3xl font-black text-white uppercase tracking-tighter italic">Le Grand Trail</h2>
+                <h2 class="text-2xl font-black text-white uppercase tracking-tighter">Le Grand Trail</h2>
             </div>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-black/60 p-5 rounded-2xl border border-white/10 text-center">
-                    <h3 class="font-bold text-gold mb-4 uppercase text-[10px]">12 KM (Adultes)</h3>
-                    <i class="fas fa-medal text-gold text-xl"></i> À venir
-                </div>
-                <div class="bg-black/60 p-5 rounded-2xl border border-white/10 text-center">
-                    <h3 class="font-bold text-gold mb-4 uppercase text-[10px]">6 KM / KV</h3>
-                    <i class="fas fa-medal text-gold text-xl"></i> À venir
-                </div>
+            <div class="grid grid-cols-2 gap-4 text-center text-sm">
+                <div class="bg-black/60 p-4 rounded-xl border border-white/5"><h3 class="font-bold text-gold text-[10px] mb-1">12 KM</h3>À venir</div>
+                <div class="bg-black/60 p-4 rounded-xl border border-white/5"><h3 class="font-bold text-gold text-[10px] mb-1">6 KM / KV</h3>À venir</div>
             </div>
         </div>
 
-        <div class="glass rounded-[2rem] p-8 border-t-4 border-savoie tilt-card shadow-lg shadow-savoie/10" data-aos="fade-up">
-            <div class="flex items-center gap-4 mb-8">
+        <div class="glass rounded-[2rem] p-8 border-t-4 border-savoie tilt-card" data-aos="fade-up">
+            <div class="flex items-center gap-4 mb-6">
                 <i class="fas fa-users text-savoie text-3xl"></i>
-                <h2 class="text-3xl font-black text-white uppercase tracking-tighter italic">Relais Folklo</h2>
+                <h2 class="text-2xl font-black text-white uppercase tracking-tighter italic">Relais Folklo</h2>
             </div>
-            <div class="bg-savoie/5 p-8 rounded-2xl border border-savoie/30 text-center">
-                <h4 class="font-bold text-savoie uppercase text-xs mb-4">Équipe Gagnante</h4>
-                <div class="flex items-center justify-center gap-4">
-                    <i class="fas fa-trophy text-gold text-4xl"></i>
-                    <span class="text-2xl font-black text-white">À venir</span>
-                </div>
+            <div class="bg-savoie/5 p-6 rounded-2xl border border-savoie/20 text-center">
+                <p class="text-savoie font-bold uppercase text-[10px] mb-2">Équipe Gagnante</p>
+                <p class="text-xl font-black uppercase italic">À venir</p>
             </div>
         </div>
 
     </main>
 
-    <div class="fixed bottom-6 left-4 right-4 h-16 bg-[#1a1a1a]/90 backdrop-blur-md rounded-full flex justify-around items-center px-2 z-50 shadow-2xl border border-gray-700 max-w-lg mx-auto">
+    <div class="fixed bottom-6 left-4 right-4 h-16 bg-[#1a1a1a]/95 backdrop-blur-md rounded-full flex justify-around items-center px-2 z-50 shadow-2xl border border-gray-700 max-w-lg mx-auto">
         <a href="index.html" class="flex flex-col items-center text-gray-400 hover:text-white transition w-12 hover:scale-110">
             <i class="fas fa-home text-lg mb-0.5"></i>
             <span class="text-[9px] font-bold uppercase">Accueil</span>
@@ -287,22 +221,19 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        AOS.init({ duration: 800, once: true });
+        AOS.init({ duration: 800, once: true, disable: 'mobile' });
         gsap.from("#header-content", { duration: 1.2, y: -30, opacity: 0, ease: "power4.out" });
-        
-        const cards = document.querySelectorAll('.tilt-card');
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const rotateX = (y - (rect.height / 2)) / 30;
-                const rotateY = ((rect.width / 2) - x) / 30;
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        if (window.innerWidth > 768) {
+            document.querySelectorAll('.tilt-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const rotateX = (e.clientY - rect.top - (rect.height / 2)) / 30;
+                    const rotateY = ((rect.width / 2) - (e.clientX - rect.left)) / 30;
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                card.addEventListener('mouseleave', () => { card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`; });
             });
-            card.addEventListener('mouseleave', () => { card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`; });
-        });
-        
+        }
         particlesJS("particles-js", { "particles": { "number": { "value": 30 }, "color": { "value": "#ffffff" }, "opacity": { "value": 0.1 }, "size": { "value": 2 }, "move": { "enable": true, "speed": 1 } } });
     </script>
 </body>
