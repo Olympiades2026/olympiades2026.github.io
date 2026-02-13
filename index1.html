@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olympiades 2026 | SAVOIE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'savoie': '#E3001B', 'gold': '#FFD700', 'dark-bg': '#0a0a0a' },
+                    fontFamily: { sans: ['Montserrat', 'sans-serif'], sport: ['Bebas Neue', 'cursive'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-bg { background: linear-gradient(rgba(10,10,10,0.4), #0a0a0a), url('IMG_3811-2.jpg') center/cover fixed; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+        .nav-active { color: #E3001B; transform: scale(1.1); }
+        #particles-js { position: fixed; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+    </style>
+</head>
+<body class="bg-dark-bg text-gray-100 font-sans selection:bg-savoie">
+    <div id="particles-js"></div>
+
+    <header class="hero-bg min-h-screen flex flex-col justify-center items-center text-center px-4 relative">
+        <div class="z-10" data-aos="zoom-out" data-aos-duration="1200">
+            <div class="w-32 h-32 md:w-40 md:h-40 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center mb-8 border-2 border-white/20 shadow-2xl mx-auto overflow-hidden">
+                <img src="logo.png" alt="Logo" class="w-3/4 h-3/4 object-contain">
+            </div>
+            <span class="px-4 py-1 bg-savoie text-white text-xs font-black tracking-[0.3em] uppercase rounded-full mb-4 inline-block">Savoie • 2026</span>
+            <h1 class="font-sport text-7xl md:text-9xl leading-none tracking-tighter uppercase text-white drop-shadow-2xl">Olympiades<br><span class="text-gold italic">Familiales</span></h1>
+            <p class="text-xl md:text-2xl mt-6 font-light tracking-widest text-gray-300">25 JUILLET — 01 AOÛT</p>
+        </div>
+        
+        <div class="grid grid-cols-4 gap-3 mt-12 w-full max-w-lg z-10" data-aos="fade-up" data-aos-delay="400">
+            <div class="glass p-3 rounded-2xl"><span id="days" class="block text-3xl font-black">00</span><span class="text-[10px] uppercase opacity-50">Jours</span></div>
+            <div class="glass p-3 rounded-2xl"><span id="hours" class="block text-3xl font-black">00</span><span class="text-[10px] uppercase opacity-50">Hrs</span></div>
+            <div class="glass p-3 rounded-2xl"><span id="minutes" class="block text-3xl font-black">00</span><span class="text-[10px] uppercase opacity-50">Min</span></div>
+            <div class="glass p-3 rounded-2xl"><span id="seconds" class="block text-3xl font-black text-savoie">00</span><span class="text-[10px] uppercase opacity-50">Sec</span></div>
+        </div>
+    </header>
+
+    <section id="agenda" class="max-w-3xl mx-auto px-4 py-20 relative z-10 space-y-10">
+        <div class="glass p-8 rounded-[2rem] border-l-8 border-savoie group hover:bg-white/5 transition" data-aos="fade-right">
+            <div class="flex justify-between items-start mb-6">
+                <h4 class="text-savoie font-black text-xs tracking-widest uppercase italic">Samedi 25 Juillet</h4>
+                <i class="fas fa-fire text-gold animate-pulse text-2xl"></i>
+            </div>
+            <h2 class="text-4xl font-black uppercase mb-2">L'Ouverture 🔥</h2>
+            <div class="space-y-4 text-sm text-gray-400 mt-6">
+                <div class="flex gap-4"> <span class="text-white font-bold w-12 text-lg">17h00</span> <span>Départ de la Flamme (Fréterive > St Réal)</span> </div>
+                <div class="p-4 bg-savoie/10 rounded-xl border border-savoie/20">
+                    <p class="text-gold font-bold">20h00 • Soirée Retrouvailles "Alors on danse"</p>
+                    <p class="text-xs mt-1">St Réal • Buffet Canadien (Chacun apporte plat & couverts)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass p-8 rounded-[2rem] border-l-8 border-gold group hover:bg-white/5 transition" data-aos="fade-left">
+            <div class="flex justify-between items-start mb-6">
+                <h4 class="text-gold font-black text-xs tracking-widest uppercase italic">Dimanche 26 Juillet</h4>
+                <i class="fas fa-volleyball-ball text-white text-2xl"></i>
+            </div>
+            <h2 class="text-4xl font-black uppercase mb-6">Volley & Badminton 🏐</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <a href="#" class="bg-gold text-black font-black py-4 rounded-xl text-center uppercase tracking-tighter hover:scale-105 transition">Inscription Volley</a>
+                <a href="#" class="border-2 border-gold text-gold font-black py-4 rounded-xl text-center uppercase tracking-tighter hover:bg-gold hover:text-black transition">Inscription Badminton</a>
+            </div>
+        </div>
+
+        </section>
+
+    <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md h-20 bg-black/80 backdrop-blur-2xl rounded-[2.5rem] flex justify-around items-center px-6 z-50 border border-white/10 shadow-2xl">
+        <a href="index1.html" class="flex flex-col items-center nav-active"><i class="fas fa-home text-xl"></i><span class="text-[9px] font-bold uppercase mt-1">Accueil</span></a>
+        <a href="souvenirs1.html" class="flex flex-col items-center text-gray-500 hover:text-white"><i class="fas fa-film text-xl"></i><span class="text-[9px] font-bold uppercase mt-1">Vidéos</span></a>
+        <a href="lieux1.html" class="flex flex-col items-center text-gray-500 hover:text-white"><i class="fas fa-map-marker-alt text-xl"></i><span class="text-[9px] font-bold uppercase mt-1">Lieux</span></a>
+        <a href="podium1.html" class="flex flex-col items-center text-gray-500 hover:text-white"><i class="fas fa-trophy text-xl"></i><span class="text-[9px] font-bold uppercase mt-1">Podium</span></a>
+    </nav>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        AOS.init();
+        const targetDate = new Date("July 25, 2026 09:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            if (distance > 0) {
+                document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+                document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+                document.getElementById("minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+                document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
+            }
+        }, 1000);
+
+        particlesJS("particles-js", {
+            "particles": { "number": { "value": 50 }, "color": { "value": "#ffffff" }, "opacity": { "value": 0.2 }, "size": { "value": 2 }, "move": { "enable": true, "speed": 1, "direction": "bottom" } }
+        });
+    </script>
+</body>
+</html>
