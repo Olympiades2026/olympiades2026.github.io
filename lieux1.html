@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lieux - Olympiades 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .map-container { height: calc(100vh - 80px); filter: grayscale(0.5) contrast(1.2) invert(0.9) hue-rotate(180deg); }
+    </style>
+</head>
+<body class="bg-[#0a0a0a] text-white font-sans overflow-hidden">
+    <header class="h-20 flex items-center justify-center border-b border-white/10 px-4 bg-black">
+        <h1 class="text-xl font-black uppercase tracking-widest"><i class="fas fa-map-pin text-savoie mr-2"></i> Savoie 2026</h1>
+    </header>
+
+    <main class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m2!1m3!1d89124.646452243!2d6.09545925!3d45.5262744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478ba1920eb18a35%3A0xc3f170f3f21136b!2s73250%20Fr%C3%A9terive!5e0!3m2!1sfr!2sfr!4v1715850000000!5m2!1sfr!2sfr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </main>
+
+    <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md h-20 bg-black/80 backdrop-blur-2xl rounded-[2.5rem] flex justify-around items-center px-6 z-50 border border-white/10 shadow-2xl">
+        <a href="index1.html" class="flex flex-col items-center text-gray-500 hover:text-white"><i class="fas fa-home text-xl"></i><span class="text-[9px] font-bold uppercase mt-1">Accueil</span></a>
+        <a href="souvenirs1.html" class="flex flex-col items-center text-gray-500 hover:text-white"><i class="fas fa-film text-xl"></i><span class="text-[9px] font-bold uppercase mt-1">Vidéos</span></a>
+        <a href="lieux1.html" class="flex flex-col items-center text-savoie"><i class="fas fa-map-marker-alt text-xl"></i><span class="text-[9px] font-bold uppercase mt-1">Lieux</span></a>
+        <a href="podium1.html" class="flex flex-col items-center text-gray-500 hover:text-white"><i class="fas fa-trophy text-xl"></i><span class="text-[9px] font-bold uppercase mt-1">Podium</span></a>
+    </nav>
+</body>
+</html>
