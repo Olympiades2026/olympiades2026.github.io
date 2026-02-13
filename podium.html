@@ -54,7 +54,7 @@
 
         <div class="glass rounded-[2rem] p-8 border-t-4 border-blue-500 tilt-card" data-aos="fade-up">
             <div class="flex items-center gap-4 mb-8">
-                <i class="fas fa-table-tennis text-blue-500 text-3xl"></i>
+                <i class="fas fa-table-tennis-paddle-ball text-blue-500 text-3xl"></i>
                 <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Ping-Pong</h2>
             </div>
             <div class="grid md:grid-cols-2 gap-6">
@@ -107,12 +107,22 @@
 
         <div class="glass rounded-[2rem] p-8 border-t-4 border-yellow-300 tilt-card" data-aos="fade-up">
             <div class="flex items-center gap-4 mb-8">
-                <i class="fas fa-table-tennis text-yellow-300 text-3xl"></i>
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-yellow-300 fill-current">
+                    <path d="M12 2L8 10H16L12 2Z" opacity="0.5"/>
+                    <path d="M12 22C14.2091 22 16 20.2091 16 18H8C8 20.2091 9.79086 22 12 22Z"/>
+                    <path d="M19 10L16 18H8L5 10H19Z"/>
+                </svg>
                 <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Badminton</h2>
             </div>
             <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center"><h3 class="font-bold text-yellow-300 mb-4 uppercase text-xs">Adultes</h3><i class="fas fa-medal text-gold text-2xl mr-2"></i> À venir</div>
-                <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center"><h3 class="font-bold text-yellow-300 mb-4 uppercase text-xs">Jeunes</h3><i class="fas fa-medal text-gold text-2xl mr-2"></i> À venir</div>
+                <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+                    <h3 class="font-bold text-yellow-300 mb-4 uppercase text-xs">Adultes</h3>
+                    <div class="flex items-center justify-center gap-2"><i class="fas fa-medal text-gold text-2xl"></i> <span>À venir</span></div>
+                </div>
+                <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+                    <h3 class="font-bold text-yellow-300 mb-4 uppercase text-xs">Jeunes</h3>
+                    <div class="flex items-center justify-center gap-2"><i class="fas fa-medal text-gold text-2xl"></i> <span>À venir</span></div>
+                </div>
             </div>
         </div>
 
@@ -206,27 +216,37 @@
             </div>
         </div>
 
-        <div class="glass rounded-[2rem] p-8 border-t-4 border-gold tilt-card shadow-[0_0_50px_rgba(255,215,0,0.1)]" data-aos="zoom-in">
+        <div class="glass rounded-[2rem] p-8 border-t-4 border-gold tilt-card shadow-[0_0_50px_rgba(255,215,0,0.05)]" data-aos="fade-up">
             <div class="flex items-center gap-4 mb-8">
                 <i class="fas fa-running text-gold text-3xl"></i>
                 <h2 class="text-3xl font-black text-white uppercase tracking-tighter italic">Le Grand Trail</h2>
             </div>
-            <div class="grid md:grid-cols-2 gap-6 mb-10">
-                <div class="bg-gold/5 p-5 rounded-2xl border border-gold/20">
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-black/40 p-5 rounded-2xl border border-white/5">
                     <h3 class="text-center font-bold text-gold mb-4 uppercase text-[10px]">12 KM (Adultes)</h3>
-                    <ul class="space-y-2">
+                    <ul class="space-y-2 text-center">
                         <li><i class="fas fa-medal text-gold"></i> À venir</li>
                         <li class="opacity-40 text-sm"><i class="fas fa-medal text-silver"></i> À venir</li>
                     </ul>
                 </div>
-                <div class="bg-gold/5 p-5 rounded-2xl border border-gold/20">
-                    <h3 class="text-center font-bold text-gold mb-4 uppercase text-[10px]">6 KM (Jeunes)</h3>
+                <div class="bg-black/40 p-5 rounded-2xl border border-white/5">
+                    <h3 class="text-center font-bold text-gold mb-4 uppercase text-[10px]">6 KM / KV</h3>
                     <p class="text-center italic"><i class="fas fa-medal text-gold mr-2"></i>À venir</p>
                 </div>
             </div>
-            <div class="bg-savoie/20 p-6 rounded-2xl border border-savoie/40 text-center">
-                <h4 class="font-black text-white uppercase tracking-widest mb-2"><i class="fas fa-users mr-3"></i>Relais Folklo</h4>
-                <p class="text-gold font-bold uppercase italic tracking-tighter text-xl">À venir</p>
+        </div>
+
+        <div class="glass rounded-[2rem] p-8 border-t-4 border-savoie tilt-card shadow-[0_0_40px_rgba(227,0,27,0.1)]" data-aos="fade-up">
+            <div class="flex items-center gap-4 mb-8">
+                <i class="fas fa-users text-savoie text-3xl"></i>
+                <h2 class="text-3xl font-black text-white uppercase tracking-tighter italic">Relais Folklo</h2>
+            </div>
+            <div class="bg-savoie/10 p-8 rounded-2xl border border-savoie/20 text-center">
+                <h4 class="font-bold text-savoie uppercase tracking-[0.2em] mb-4 text-xs">Équipe Gagnante</h4>
+                <div class="flex items-center justify-center gap-4">
+                    <i class="fas fa-medal text-gold text-4xl"></i>
+                    <span class="text-2xl font-black text-white uppercase">À venir</span>
+                </div>
             </div>
         </div>
 
@@ -255,11 +275,7 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
         AOS.init({ duration: 800, once: true });
-
-        // Animation GSAP Titre
         gsap.from("#header-content", { duration: 1.2, y: -50, opacity: 0, ease: "power4.out" });
-
-        // Tilt Cards Logic
         const cards = document.querySelectorAll('.tilt-card');
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
@@ -272,11 +288,7 @@
             });
             card.addEventListener('mouseleave', () => { card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`; });
         });
-
-        // Particules Background
-        particlesJS("particles-js", {
-            "particles": { "number": { "value": 40 }, "color": { "value": "#ffffff" }, "opacity": { "value": 0.1 }, "size": { "value": 2 }, "move": { "enable": true, "speed": 1 } }
-        });
+        particlesJS("particles-js", { "particles": { "number": { "value": 40 }, "color": { "value": "#ffffff" }, "opacity": { "value": 0.1 }, "size": { "value": 2 }, "move": { "enable": true, "speed": 1 } } });
     </script>
 </body>
 </html>
