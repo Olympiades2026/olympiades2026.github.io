@@ -7,25 +7,40 @@
     <link rel="icon" type="image/png" href="logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script>
-        tailwind.config = { theme: { extend: { colors: { 'savoie': '#E3001B', 'gold': '#FFD700', 'dark-bg': '#0a0a0a' }, fontFamily: { sans: ['Montserrat', 'sans-serif'] } } } }
+        tailwind.config = {
+            theme: { extend: { colors: { 'savoie': '#E3001B', 'gold': '#FFD700', 'dark-bg': '#0a0a0a' }, fontFamily: { sans: ['Montserrat', 'sans-serif'] } } }
+        }
     </script>
+    <style>
+        body { background-color: #0a0a0a; color: #e2e8f0; font-family: 'Montserrat', sans-serif; overflow: hidden; }
+        .global-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(10,10,10,0.8), rgba(10,10,10,0.8)), url('IMG_3811-2.jpg') center/cover no-repeat fixed;
+            z-index: -1;
+        }
+        .glass-header { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(5px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .map-container { height: calc(100vh - 160px); position: relative; margin: 20px; border-radius: 2rem; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
+        /* Filtre sombre pour la carte */
+        .map-container iframe { filter: invert(90%) hue-rotate(180deg) brightness(0.8) contrast(1.2); }
+    </style>
 </head>
-<body class="bg-dark-bg text-gray-200 font-sans overflow-hidden">
-    <header class="bg-black/50 backdrop-blur-md text-white py-6 px-4 shadow-xl text-center border-b border-white/10 relative z-10">
-        <h1 class="text-3xl font-black uppercase tracking-tighter">Carte & Lieux 📍</h1>
-        <p class="text-[10px] uppercase tracking-widest text-gold font-bold">Retrouvez votre chemin en Savoie</p>
+<body>
+    <div class="global-bg"></div>
+
+    <header class="glass-header py-6 px-4 text-center relative z-10">
+        <h1 class="text-3xl font-black uppercase tracking-tighter text-white">Carte & Lieux 📍</h1>
+        <p class="text-[10px] uppercase tracking-[0.3em] text-gold font-bold mt-1">Retrouvez votre chemin en Savoie</p>
     </header>
 
-    <main class="h-[calc(100vh-160px)] relative">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d44682.84413176593!2d6.117878916117461!3d45.576918395243446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478bb742ce31a4bd%3A0x408ab2ae4baaa20!2s73250%20Saint-Pierre-d&#39;Albigny!5e0!3m2!1sfr!2sfr!4v1768249778550!5m2!1sfr!2sfr"
-            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <main class="map-container relative z-10">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d44682.84413176593!2d6.117878916117461!3d45.576918395243446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478bb742ce31a4bd%3A0x408ab2ae4baaa20!2s73250%20Saint-Pierre-d'Albigny!5e0!3m2!1sfr!2sfr!4v1768249778550!5m2!1sfr!2sfr" 
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </main>
 
-    <nav class="fixed bottom-6 left-4 right-4 h-16 bg-[#1a1a1a]/90 backdrop-blur-sm rounded-full flex justify-around items-center px-2 z-50 shadow-2xl border border-gray-700 max-w-lg mx-auto">
+    <nav class="fixed bottom-6 left-4 right-4 h-16 bg-[#1a1a1a]/90 backdrop-blur-md rounded-full flex justify-around items-center px-2 z-50 shadow-2xl border border-gray-700 max-w-lg mx-auto">
         <a href="index.html" class="flex flex-col items-center text-gray-400 hover:text-white transition w-12"><i class="fas fa-home text-lg mb-0.5"></i><span class="text-[9px] font-bold uppercase">Accueil</span></a>
         <a href="souvenirs.html" class="flex flex-col items-center text-gray-400 hover:text-white transition w-12"><i class="fas fa-film text-lg mb-0.5"></i><span class="text-[9px] font-bold uppercase">Souvenirs</span></a>
         <a href="lieux.html" class="flex flex-col items-center text-savoie w-12"><i class="fas fa-map-marker-alt text-lg mb-0.5"></i><span class="text-[9px] font-bold uppercase">Lieux</span></a>
