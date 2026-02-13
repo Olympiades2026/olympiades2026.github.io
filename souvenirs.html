@@ -1,209 +1,90 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Olympiades Familiales 2026</title>
+    <title>Souvenirs - Olympiades 2026</title>
     <link rel="icon" type="image/png" href="logo.png">
-
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'savoie': '#E3001B',
-                        'gold': '#FFD700',
-                        'dark-bg': '#121212',
-                        'card-bg': '#1E1E1E',
-                        'item-bg': '#262626',
-                    },
-                    fontFamily: {
-                        sans: ['Montserrat', 'sans-serif'],
-                    }
-                }
-            }
+            theme: { extend: { colors: { 'savoie': '#E3001B', 'gold': '#FFD700', 'dark-bg': '#0a0a0a' }, fontFamily: { sans: ['Montserrat', 'sans-serif'] } } }
         }
     </script>
     <style>
-        .header-bg {
-            position: relative;
-            background-color: #121212;
-        }
-
-        .header-bg::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('IMG_3811-2.jpg');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.7;
-        }
-
-        .glass-card {
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+        body { background-color: #0a0a0a; color: #e2e8f0; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .tilt-card { transition: transform 0.1s ease-out; transform-style: preserve-3d; }
+        #particles-js { position: fixed; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.3; }
     </style>
 </head>
-
-<body class="bg-dark-bg text-gray-200 font-sans pb-24 selection:bg-savoie selection:text-white">
-
-    <header
-        class="header-bg min-h-screen flex flex-col justify-center items-center text-center px-4 relative text-white overflow-hidden">
-
-        <div class="relative z-10 flex flex-col items-center w-full max-w-4xl">
-
-            <div
-                class="w-36 h-36 bg-white rounded-full flex items-center justify-center mb-6 border-[5px] border-savoie shadow-2xl overflow-hidden p-2 transform hover:scale-105 transition duration-500">
-                <img src="logo.png" alt="Logo" class="w-full h-full object-contain">
-            </div>
-
-            <div
-                class="bg-savoie px-6 py-1 rounded-full text-xs font-bold tracking-[0.2em] mb-4 uppercase shadow-lg border border-white/20">
-                Savoie • 2026
-            </div>
-
-            <h1 class="text-5xl md:text-7xl font-black mb-0 uppercase leading-none drop-shadow-xl tracking-tighter">
-                OLYMPIADES<br>
-                <span class="text-gold">FAMILIALES</span>
-            </h1>
-
-            <p class="text-lg md:text-xl font-medium mt-4 mb-8 drop-shadow-md text-gray-100">
-                Du 25 Juillet au 1er Août 2026<br>
-                <span class="text-sm italic opacity-80">Famille Delachenal & Co</span>
-            </p>
-
-            <div class="grid grid-cols-4 gap-4 w-full max-w-md mx-auto mb-12">
-                <div class="glass-card p-3 rounded-lg text-center"><span class="block text-3xl font-black"
-                        id="days">00</span><span class="text-[10px] uppercase font-bold tracking-wider">Jours</span>
-                </div>
-                <div class="glass-card p-3 rounded-lg text-center"><span class="block text-3xl font-black"
-                        id="hours">00</span><span class="text-[10px] uppercase font-bold tracking-wider">Hrs</span>
-                </div>
-                <div class="glass-card p-3 rounded-lg text-center"><span class="block text-3xl font-black"
-                        id="minutes">00</span><span class="text-[10px] uppercase font-bold tracking-wider">Min</span>
-                </div>
-                <div class="glass-card p-3 rounded-lg text-center"><span class="block text-3xl font-black"
-                        id="seconds">00</span><span class="text-[10px] uppercase font-bold tracking-wider">Sec</span>
-                </div>
-            </div>
-        </div>
-
-        <div
-            class="absolute bottom-0 left-0 w-full bg-savoie text-white py-3 px-2 shadow-[0_-5px_20px_rgba(0,0,0,0.5)] z-20">
-            <div
-                class="flex items-center justify-center text-xs md:text-sm font-bold uppercase tracking-wide gap-3 text-center animate-pulse">
-                <i class="fas fa-utensils text-gold text-lg"></i>
-                <span>Buffet Canadien : Apportez repas, boissons & couverts !</span>
-            </div>
-        </div>
+<body class="pb-24">
+    <div id="particles-js"></div>
+    
+    <header class="py-12 text-center relative z-10">
+        <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">Archives <span class="text-savoie italic">Vidéo</span></h1>
+        <p class="text-gray-500 text-xs font-bold uppercase tracking-[0.3em] mt-2">Revivre les exploits</p>
     </header>
 
-    <section id="video" class="max-w-4xl mx-auto px-4 py-8 space-y-8">
-
-        <!-- 2022 Video -->
-        <div class="bg-card-bg rounded-xl p-6 border-l-[6px] border-savoie shadow-lg">
+    <main class="max-w-4xl mx-auto px-4 space-y-10 relative z-10">
+        <div class="glass p-6 rounded-3xl border-l-8 border-savoie tilt-card" data-aos="fade-up">
             <div class="flex items-center gap-3 mb-4">
                 <i class="fas fa-video text-savoie text-2xl"></i>
-                <h2 class="text-2xl font-bold text-white uppercase tracking-wide">Souvenirs 2022</h2>
+                <h2 class="text-2xl font-black text-white uppercase">Souvenirs 2022</h2>
             </div>
-            <div
-                class="relative w-full pb-[56.25%] rounded-lg overflow-hidden border border-gray-800 shadow-2xl bg-black">
-                <iframe src="https://drive.google.com/file/d/1rVlcrcaDs4cXcL4mfftDj9NhQppvMCX_/preview" width="640"
-                    height="480" allow="autoplay" class="absolute inset-0 w-full h-full border-0"></iframe>
+            <div class="relative w-full pb-[56.25%] rounded-2xl overflow-hidden shadow-2xl bg-black">
+                <iframe src="https://drive.google.com/file/d/1rVlcrcaDs4cXcL4mfftDj9NhQppvMCX_/preview" class="absolute inset-0 w-full h-full border-0" allow="autoplay"></iframe>
             </div>
-            <p class="text-center text-gray-500 text-xs italic mt-4">L'édition 2022 !</p>
         </div>
 
-        <!-- 2021 Video -->
-        <div class="bg-card-bg rounded-xl p-6 border-l-[6px] border-gold shadow-lg">
+        <div class="glass p-6 rounded-3xl border-l-8 border-gold tilt-card" data-aos="fade-up">
             <div class="flex items-center gap-3 mb-4">
                 <i class="fas fa-video text-gold text-2xl"></i>
-                <h2 class="text-2xl font-bold text-white uppercase tracking-wide">Souvenirs 2021</h2>
+                <h2 class="text-2xl font-black text-white uppercase">Souvenirs 2021</h2>
             </div>
-            <div
-                class="relative w-full pb-[56.25%] rounded-lg overflow-hidden border border-gray-800 shadow-2xl bg-black">
-                <iframe src="https://drive.google.com/file/d/1KmCkbgFhQg3uLtZEJRW41s8ScMbaBr96/preview" width="640"
-                    height="480" allow="autoplay" class="absolute inset-0 w-full h-full border-0"></iframe>
+            <div class="relative w-full pb-[56.25%] rounded-2xl overflow-hidden shadow-2xl bg-black">
+                <iframe src="https://drive.google.com/file/d/1KmCkbgFhQg3uLtZEJRW41s8ScMbaBr96/preview" class="absolute inset-0 w-full h-full border-0" allow="autoplay"></iframe>
             </div>
-            <p class="text-center text-gray-500 text-xs italic mt-4">L'édition 2021 !</p>
         </div>
 
-        <!-- 2016 Video -->
-        <div class="bg-card-bg rounded-xl p-6 border-l-[6px] border-savoie shadow-lg">
+        <div class="glass p-6 rounded-3xl border-l-8 border-savoie tilt-card" data-aos="fade-up">
             <div class="flex items-center gap-3 mb-4">
                 <i class="fas fa-video text-savoie text-2xl"></i>
-                <h2 class="text-2xl font-bold text-white uppercase tracking-wide">Souvenirs 2016</h2>
+                <h2 class="text-2xl font-black text-white uppercase">Souvenirs 2016</h2>
             </div>
-            <div
-                class="relative w-full pb-[56.25%] rounded-lg overflow-hidden border border-gray-800 shadow-2xl bg-black">
-                <iframe src="https://drive.google.com/file/d/1ZDZkialdqv2dNgBZ9eppCLEiipILti5Z/preview" width="640"
-                    height="480" allow="autoplay" class="absolute inset-0 w-full h-full border-0"></iframe>
+            <div class="relative w-full pb-[56.25%] rounded-2xl overflow-hidden shadow-2xl bg-black">
+                <iframe src="https://drive.google.com/file/d/1ZDZkialdqv2dNgBZ9eppCLEiipILti5Z/preview" class="absolute inset-0 w-full h-full border-0" allow="autoplay"></iframe>
             </div>
-            <p class="text-center text-gray-500 text-xs italic mt-4">Revivez les meilleurs moments de l'édition 2016 !
-            </p>
         </div>
+    </main>
 
-        <div class="text-center space-y-4">
-            <a href="index.html"
-                class="inline-block bg-gold hover:bg-yellow-500 text-black font-black uppercase tracking-widest py-4 px-8 rounded-full shadow-lg transition transform hover:scale-105">
-                <i class="fas fa-list mr-2"></i> Voir le Programme 2026
-            </a>
-        </div>
+    <nav class="fixed bottom-6 left-4 right-4 h-16 bg-[#1a1a1a]/90 backdrop-blur-sm rounded-full flex justify-around items-center px-2 z-50 shadow-2xl border border-gray-700 max-w-lg mx-auto">
+        <a href="index.html" class="flex flex-col items-center text-gray-400 hover:text-white transition w-12"><i class="fas fa-home text-lg mb-0.5"></i><span class="text-[9px] font-bold uppercase">Accueil</span></a>
+        <a href="souvenirs.html" class="flex flex-col items-center text-savoie w-12"><i class="fas fa-film text-lg mb-0.5"></i><span class="text-[9px] font-bold uppercase">Souvenirs</span></a>
+        <a href="lieux.html" class="flex flex-col items-center text-gray-400 hover:text-white transition w-12"><i class="fas fa-map-marker-alt text-lg mb-0.5"></i><span class="text-[9px] font-bold uppercase">Lieux</span></a>
+        <a href="podium.html" class="flex flex-col items-center text-gray-400 hover:text-white transition w-12"><i class="fas fa-trophy text-lg mb-0.5"></i><span class="text-[9px] font-bold uppercase">Podium</span></a>
+    </nav>
 
-    </section>
-
-    <div
-        class="fixed bottom-6 left-4 right-4 h-16 bg-[#1a1a1a] rounded-full flex justify-around items-center px-2 z-50 shadow-2xl border border-gray-700">
-        <a href="index.html"
-            class="flex flex-col items-center text-gray-400 hover:text-white transition w-12 hover:scale-110">
-            <i class="fas fa-home text-lg mb-0.5"></i>
-            <span class="text-[9px]">Accueil</span>
-        </a>
-        <a href="#" class="flex flex-col items-center text-savoie w-12 hover:scale-110 transition">
-            <i class="fas fa-film text-lg mb-0.5"></i>
-            <span class="text-[9px] font-bold">Souvenirs</span>
-        </a>
-
-        <a href="lieux.html"
-            class="flex flex-col items-center text-gray-400 hover:text-white transition w-12 hover:scale-110">
-            <i class="fas fa-map-marker-alt text-lg mb-0.5"></i>
-            <span class="text-[9px]">Lieux</span>
-        </a>
-        <a href="podium.html"
-            class="flex flex-col items-center text-gray-400 hover:text-white transition w-12 hover:scale-110">
-            <i class="fas fa-trophy text-lg mb-0.5"></i>
-            <span class="text-[9px]">Podium</span>
-        </a>
-    </div>
-
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        const targetDate = new Date("July 25, 2026 09:00:00").getTime();
-        const timer = setInterval(function () {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-            if (distance > 0) {
-                document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
-                document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                document.getElementById("minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000);
-            } else {
-                clearInterval(timer);
-                document.getElementById("days").innerText = "00";
-            }
-        }, 1000);
+        AOS.init({ duration: 800, once: true });
+        const cards = document.querySelectorAll('.tilt-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const rotateX = (y - (rect.height / 2)) / 30;
+                const rotateY = ((rect.width / 2) - x) / 30;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            card.addEventListener('mouseleave', () => { card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`; });
+        });
+        particlesJS("particles-js", { "particles": { "number": { "value": 40 }, "color": { "value": "#ffffff" }, "opacity": { "value": 0.1 }, "size": { "value": 2 }, "move": { "enable": true, "speed": 1 } } });
     </script>
 </body>
-
 </html>
