@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podium - Olympiades 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { 'savoie': '#E3001B', 'gold': '#FFD700', 'silver': '#C0C0C0', 'bronze': '#CD7F32', 'dark-bg': '#0a0a0a' }, fontFamily: { sans: ['Montserrat', 'sans-serif'], sport: ['Bebas Neue', 'cursive'] } } } }
+    </script>
+</head>
+<body class="bg-dark-bg text-gray-200 font-sans pb-32">
+    <header class="bg-gradient-to-b from-savoie to-black py-16 text-center overflow-hidden relative">
+        <i class="fas fa-trophy absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15rem] text-white/5 rotate-12"></i>
+        <h1 class="font-sport text-7xl text-white uppercase tracking-tighter relative z-10">Hall of <span class="text-gold italic font-black">Fame</span></h1>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-4 mt-[-40px] relative z-20 space-y-8">
+        <div class="bg-zinc-900/80 backdrop-blur-xl rounded-[2rem] p-8 border border-white/5 shadow-2xl">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="p-4 bg-blue-500/20 rounded-2xl"><i class="fas fa-table-tennis text-blue-500 text-2xl"></i></div>
+                <h2 class="text-3xl font-sport tracking-widest uppercase">Ping-Pong</h2>
+            </div>
+
+            <div class="space-y-4">
+                <div class="flex items-center justify-between p-4 bg-white/5 rounded-2xl border-l-4 border-gold">
+                    <div class="flex items-center gap-4">
+                        <i class="fas fa-medal text-gold text-2xl"></i>
+                        <span class="font-black uppercase tracking-tighter text-xl">À venir</span>
+                    </div>
+                    <span class="text-[10px] font-bold uppercase opacity-40">1ère Place</span>
+                </div>
+                </div>
+        </div>
+
+        <div class="bg-zinc-900/80 backdrop-blur-xl rounded-[2rem] p-8 border border-white/5 shadow-2xl">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="p-4 bg-gold/20 rounded-2xl"><i class="fas fa-volleyball-ball text-gold text-2xl"></i></div>
+                <h2 class="text-3xl font-sport tracking-widest uppercase text-gold">Volley-Ball</h2>
+            </div>
+            <div class="text-center py-10 border-2 border-dashed border-white/10 rounded-3xl">
+                <i class="fas fa-lock text-gray-700 text-3xl mb-4"></i>
+                <p class="text-gray-500 font-bold uppercase tracking-widest text-xs">Résultats verrouillés jusqu'au tournoi</p>
+            </div>
+        </div>
+    </main>
+
+    <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md h-20 bg-black/80 backdrop-blur-2xl rounded-[2.5rem] flex justify-around items-center px-6 z-50 border border-white/10 shadow-2xl">
+        <a href="index1.html" class="flex flex-col items-center text-gray-500 hover:text-white"><i class="fas fa-home text-xl"></i><span class="text-[9px] font-bold uppercase mt-1">Accueil</span></a>
+        <a href="souvenirs1.html" class="flex flex-col items-center text-gray-500 hover:text-white"><i class="fas fa-film text-xl"></i><span class="text-[9px] font-bold uppercase mt-1">Vidéos</span></a>
+        <a href="lieux1.html" class="flex flex-col items-center text-gray-500 hover:text-white"><i class="fas fa-map-marker-alt text-xl"></i><span class="text-[9px] font-bold uppercase mt-1">Lieux</span></a>
+        <a href="podium1.html" class="flex flex-col items-center text-gold"><i class="fas fa-trophy text-xl"></i><span class="text-[9px] font-bold uppercase mt-1">Podium</span></a>
+    </nav>
+</body>
+</html>
