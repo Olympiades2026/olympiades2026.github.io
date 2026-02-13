@@ -39,7 +39,9 @@
             background: linear-gradient(rgba(10,10,10,0.6), #0a0a0a), url('IMG_3811-2.jpg') center/cover fixed; 
         }
         
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        /* Modif: Flou réduit à 5px comme demandé */
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        
         .tilt-card { transition: transform 0.1s ease-out; transform-style: preserve-3d; }
         
         #progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(to right, #E3001B, #FFD700); z-index: 100; width: 0%; }
@@ -295,7 +297,7 @@
         </div>
     </section>
 
-    <nav class="fixed bottom-6 left-4 right-4 h-16 bg-[#1a1a1a]/90 backdrop-blur-xl rounded-full flex justify-around items-center px-2 z-50 shadow-2xl border border-gray-700 max-w-lg mx-auto">
+    <div class="fixed bottom-6 left-4 right-4 h-16 bg-[#1a1a1a]/90 backdrop-blur-sm rounded-full flex justify-around items-center px-2 z-50 shadow-2xl border border-gray-700 max-w-lg mx-auto">
         <a href="index1.html" class="flex flex-col items-center nav-active w-12 hover:scale-110 transition">
             <i class="fas fa-home text-lg mb-0.5"></i>
             <span class="text-[9px] font-bold uppercase">Accueil</span>
@@ -304,11 +306,6 @@
             <i class="fas fa-film text-lg mb-0.5"></i>
             <span class="text-[9px] font-bold uppercase">Souvenirs</span>
         </a>
-        <div class="relative -top-6">
-            <div class="w-14 h-14 bg-savoie rounded-full flex items-center justify-center text-white shadow-xl border-4 border-[#1a1a1a]">
-                <img src="logo.png" class="w-8 h-8 object-contain">
-            </div>
-        </div>
         <a href="lieux1.html" class="flex flex-col items-center text-gray-400 hover:text-white transition w-12 hover:scale-110">
             <i class="fas fa-map-marker-alt text-lg mb-0.5"></i>
             <span class="text-[9px] font-bold uppercase">Lieux</span>
@@ -317,7 +314,7 @@
             <i class="fas fa-trophy text-lg mb-0.5"></i>
             <span class="text-[9px] font-bold uppercase">Podium</span>
         </a>
-    </nav>
+    </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -325,9 +322,11 @@
     <script>
         AOS.init({ duration: 800, once: true });
 
-        // GSAP Intro (Correction Logo Bug)
+        // GSAP Intro
         gsap.from("#hero-logo", { duration: 1, scale: 0.5, opacity: 0, ease: "back.out(1.7)" });
         gsap.from("#hero-title", { duration: 1, delay: 0.3, y: 30, opacity: 0, ease: "power4.out" });
+        gsap.from("#hero-tag", { duration: 0.8, delay: 0.8, y: 20, opacity: 0 });
+        gsap.from("#hero-subtitle", { duration: 0.8, delay: 1, opacity: 0 });
 
         // Scroll Progress
         window.onscroll = function() {
@@ -359,8 +358,8 @@
                 const y = e.clientY - rect.top;
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
-                const rotateX = (y - centerY) / 20;
-                const rotateY = (centerX - x) / 20;
+                const rotateX = (y - centerY) / 25;
+                const rotateY = (centerX - x) / 25;
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
             });
             card.addEventListener('mouseleave', () => {
@@ -368,10 +367,12 @@
             });
         });
 
+        // Confetti trigger
         function fireConfetti() {
             confetti({ particleCount: 150, spread: 70, origin: { y: 0.8 }, colors: ['#FFD700', '#E3001B', '#ffffff'] });
         }
 
+        // Particles Background
         particlesJS("particles-js", {
             "particles": { "number": { "value": 40 }, "color": { "value": "#ffffff" }, "opacity": { "value": 0.1 }, "size": { "value": 2 }, "move": { "enable": true, "speed": 1 } }
         });
