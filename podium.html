@@ -31,23 +31,51 @@
     </script>
 
     <style>
-        body { background-color: #0a0a0a; color: #e2e8f0; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+        body { background-color: #0a0a0a; color: #e2e8e0; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+        
+        /* Modif: Flou à 5px */
         .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        
         .tilt-card { transition: transform 0.1s ease-out; transform-style: preserve-3d; }
         #particles-js { position: fixed; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.2; }
         .nav-active { color: #FFD700 !important; }
+
+        /* Nouveau Style pour le Header Podium */
+        .podium-header {
+            position: relative;
+            background: radial-gradient(circle at center, rgba(227, 0, 27, 0.15) 0%, rgba(10, 10, 10, 1) 80%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .header-glow {
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(227, 0, 27, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
     </style>
 </head>
 
 <body class="pb-32 selection:bg-savoie selection:text-white">
     <div id="particles-js"></div>
 
-    <header class="bg-savoie text-white py-12 px-4 shadow-xl text-center relative overflow-hidden">
+    <header class="podium-header py-20 px-4 text-center overflow-hidden">
+        <div class="header-glow"></div>
+        
         <div class="relative z-10" id="header-content">
-            <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter">Le Podium 🏆</h1>
-            <p class="text-sm opacity-90 font-bold uppercase tracking-[0.3em] mt-2">Les Rois & Reines de l'Olympe</p>
+            <div class="inline-block mb-4 px-4 py-1 border border-savoie/30 rounded-full bg-savoie/5">
+                <span class="text-savoie text-[10px] font-black uppercase tracking-[0.4em]">Classement Officiel</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white drop-shadow-2xl">
+                Le <span class="text-savoie italic">Podium</span> 🏆
+            </h1>
+            <p class="text-gray-400 text-xs font-bold uppercase tracking-[0.3em] mt-4">Les Rois & Reines de l'Olympe</p>
         </div>
-        <i class="fas fa-trophy absolute -bottom-10 -right-10 text-[12rem] text-black opacity-10 rotate-12"></i>
+
+        <i class="fas fa-trophy absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15rem] text-savoie opacity-[0.03] pointer-events-none"></i>
     </header>
 
     <main class="px-4 py-12 max-w-4xl mx-auto space-y-12 relative z-10">
@@ -107,10 +135,8 @@
 
         <div class="glass rounded-[2rem] p-8 border-t-4 border-yellow-300 tilt-card" data-aos="fade-up">
             <div class="flex items-center gap-4 mb-8">
-                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-yellow-300 fill-current">
-                    <path d="M12 2L8 10H16L12 2Z" opacity="0.5"/>
-                    <path d="M12 22C14.2091 22 16 20.2091 16 18H8C8 20.2091 9.79086 22 12 22Z"/>
-                    <path d="M19 10L16 18H8L5 10H19Z"/>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-yellow-300 fill-current">
+                    <path d="M12 2L8 10H16L12 2Z" opacity="0.5"/><path d="M12 22C14.2091 22 16 20.2091 16 18H8C8 20.2091 9.79086 22 12 22Z"/><path d="M19 10L16 18H8L5 10H19Z"/>
                 </svg>
                 <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Badminton</h2>
             </div>
@@ -282,8 +308,8 @@
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
-                const rotateX = (y - (rect.height / 2)) / 30;
-                const rotateY = ((rect.width / 2) - x) / 30;
+                const rotateX = (y - (rect.height / 2)) / 25;
+                const rotateY = ((rect.width / 2) - x) / 25;
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
             });
             card.addEventListener('mouseleave', () => { card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`; });
